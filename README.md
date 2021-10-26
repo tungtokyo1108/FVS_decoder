@@ -28,10 +28,19 @@ result = automl.fit(X_train, y_train, X_test, y_test)
 
 ```
 Outputs are shown in table 
+
 | Name_Model                  | MSE       | MAE      | R2_Score |
-| --------------------------- |:---------:| --------:| --------:|
+| --------------------------- |:---------:|:--------:|:--------:|
 | KernelRidge_regression      | 15.396256 | 3.192229 | 0.064702 |
 | LassoLars_regression        | 15.589468 | 3.193472 | 0.052964 |
+| MultiTaskLasso_regression   | 15.589468 | 3.193472 | 0.052964 |
+| Ridge_regression            | 16.224041 | 3.228338 | 0.014415 |
+| ElasticNet_regression       | 16.345417 | 3.239610 | 0.007041 |
+| Lars_regression             | 16.729033 | 3.252711 | -0.01626 |
+| Stochastic_Gradient_Descent | 17.032267 | 3.353871 | -0.03468 |
+| LASSO_regression            | 17.079694 | 3.252711 | -0.03756 |
+| DecisionTree_regression     | 18.015736 | 3.422243 | -0.09442 |
+| Random_Forest               | 18.892558 | 3.570010 | -0.14769 |
 
 ### 2. Forward variable selection algorithm
 
