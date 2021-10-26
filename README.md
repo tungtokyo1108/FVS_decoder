@@ -1,4 +1,4 @@
-# AutoML_FVS: A new approach to identify a small group of brain region from fMRI databases 
+# AutoML_FVS: A new approach to identify a important group of brain region from fMRI databases 
 
 ## Main commands and options
 
@@ -27,6 +27,11 @@ automl = AutoML_Regression()
 result = automl.fit(X_train, y_train, X_test, y_test)
 
 ```
+Outputs are shown in table 
+| Name_Model                  | MSE       | MAE      | R2_Score |
+| --------------------------- |:---------:| --------:| --------:|
+| KernelRidge_regression      | 15.396256 | 3.192229 | 0.064702 |
+| LassoLars_regression        | 15.589468 | 3.193472 | 0.052964 |
 
 ### 2. Forward variable selection algorithm
 
