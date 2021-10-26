@@ -44,4 +44,30 @@ Outputs are shown in table
 
 ### 2. Forward variable selection algorithm
 
+After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the kernel ridge regression is the best model with the smallest value of MSE. Thus, we start with combination of the kernel ridge regression and forward variable selection. 
+
+```
+from FVS_algorithm import AutoML_FVS
+fvs = AutoML_FVS()
+all_info, all_model, f = fvs.KernelRidge_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   38.9s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.4min finished
+The current number of features: 1 - MSE: 12.51
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   36.9s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.4min finished
+The current number of features: 2 - MSE: 10.48
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   41.4s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.5min finished
+The current number of features: 3 - MSE: 9.67
+
+.....
+
+```
+
 ### 3. Evaluate the performances
