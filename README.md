@@ -3,6 +3,7 @@
 ## Main commands and options
 
 ### 1. Automatic machine learning approaches 
+### 1.1 Regression
 
 ```
 import pandas as pd
@@ -10,7 +11,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
-from Auto_ML_Multiclass import AutoML_classification
 from Auto_ML_Regression import AutoML_Regression
 ```
 
@@ -41,6 +41,46 @@ Outputs are shown in table
 | LASSO_regression            | 17.079694 | 3.252711 | -0.03756 |
 | DecisionTree_regression     | 18.015736 | 3.422243 | -0.09442 |
 | Random_Forest               | 18.892558 | 3.570010 | -0.14769 |
+
+### 1.2 Classification
+
+```
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.model_selection import train_test_split
+from Auto_ML_Multiclass import AutoML_classification
+```
+
+Import data and run automatic machine learning algorithm 
+
+```
+rumi = pd.read_csv("rumi.csv")
+rumi_region = rumi.drop(columns = ['MRI_ordID', 'CurrentDepression', 'Depressiongroup', 'TIV',
+       'Age', 'Gender_1_male', 'BDI_Total', 'RRS_Brooding', 'RRS_Reflection', 'RRS_DepressiveRumination',
+       'RRS_Total', 'Dep_PastEpisodes', 'Dep_Duration'])
+y = rumi["Depressiongroup"].apply(lambda x: 0 
+                                          if x == "MDD" else 1
+                                          if x == "BPD" else 2)
+class_name = ["MDD", "BPD", 'Healthy']
+X_train, X_test, y_train, y_test = train_test_split(rumi_region, y, test_size=0.3, random_state=42)
+
+automl = AutoML_classification()
+result = automl.fit(X_train, y_train, X_test, y_test)
+```
+Outputs are shown in table 
+
+| Name_Model                  | Accuracy (%)| Precision | Recall   | F1_Score |
+| --------------------------- |:-----------:|:---------:|:--------:|:--------:|
+| Decision_Tree               | 52.105263   | 0.5200    | 0.5175   | 0.5174   |
+| Extra_Tree                  | 42.235273   | 0.4200    | 0.4185   | 0.4194   |
+| Random_Forest               | 39.526316   | 0.3915    | 0.3727   | 0.3876   |
+| Support_Vector_Machine      | 36.894737   | 0.3682    | 0.3427   | 0.3557   |
+| Gradient_Boosting           | 35.526316   | 0.3515    | 0.3456   | 0.3386   |
+| Stochastic_Gradient_Descent | 32.795747   | 0.3282    | 0.3227   | 0.3077   |
+| Losgistic_Classification    | 31.526316   | 0.3115    | 0.3017   | 0.3178   |
+| Naive_Bayes                 | 30.294832   | 0.3092    | 0.3087   | 0.3026   |
 
 ### 2. Forward variable selection algorithm
 
