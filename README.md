@@ -73,7 +73,7 @@ Outputs are shown in table
 
 | Name_Model                  | Accuracy (%)| Precision | Recall   | F1_Score |
 | --------------------------- |:-----------:|:---------:|:--------:|:--------:|
-| Decision_Tree               | 52.105263   | 0.5200    | 0.5175   | 0.5174   |
+| Decision_Tree               | 45.105263   | 0.4523    | 0.4401   | 0.4536   |
 | Extra_Tree                  | 42.235273   | 0.4200    | 0.4185   | 0.4194   |
 | Random_Forest               | 39.526316   | 0.3915    | 0.3727   | 0.3876   |
 | Support_Vector_Machine      | 36.894737   | 0.3682    | 0.3427   | 0.3557   |
@@ -83,6 +83,7 @@ Outputs are shown in table
 | Naive_Bayes                 | 30.294832   | 0.3092    | 0.3087   | 0.3026   |
 
 ### 2. Forward variable selection algorithm
+### 2.1 Regression
 
 After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the kernel ridge regression is the best model with the smallest value of MSE. Thus, we start with combination of the kernel ridge regression and forward variable selection. 
 
@@ -105,6 +106,27 @@ The current number of features: 2 - MSE: 10.48
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   41.4s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.5min finished
 The current number of features: 3 - MSE: 9.67
+
+.....
+
+```
+
+### 2.1 Classification
+
+After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the decision tree classifier is the best model with the highest accuracy. Thus, we start with combination of the decision tree classifier and forward variable selection. 
+
+```
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    3.2s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:    4.7s finished
+The current number of features: 1 - Accuracy: 46.05%
+
+.....
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.7s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:    2.4s finished
+The current number of features: 54 - Accuracy: 63.16%
 
 .....
 
