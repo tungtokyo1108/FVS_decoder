@@ -116,6 +116,10 @@ The current number of features: 3 - MSE: 9.67
 After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the decision tree classifier is the best model with the highest accuracy. Thus, we start with combination of the decision tree classifier and forward variable selection. 
 
 ```
+from FVS_algorithm import AutoML_FVS
+fvs = AutoML_FVS()
+all_info, all_model, f = fvs.DecisionTree_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
+
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    3.2s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:    4.7s finished
