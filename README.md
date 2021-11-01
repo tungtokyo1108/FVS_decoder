@@ -151,9 +151,9 @@ Outputs of forward variable selection are shown in table
 ### 3. Evaluate the performances
 ### 3.1. Regression 
 
-| Name_Model                  | Accuracy (%)| 
+| Compare performance                  | Mapped brain region | 
 | --------------------------- |:-----------:|
-| ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_compare.png)              | ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_mapping.png)   | 
+| ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_compare.png)|![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_mapping.png)   | 
 
 
 
