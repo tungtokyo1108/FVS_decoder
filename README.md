@@ -135,5 +135,17 @@ The current number of features: 54 - Accuracy: 63.16%
 .....
 
 ```
+Outputs of forward variable selection are shown in table
+
+| Number of selected features | Accuracy    | Name of selected feature                              |
+| --------------------------- |:-----------:|:-----------------------------------------------------:|
+| 64                          | 0.631579    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
+| 50                          | 0.631579    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
+| 49                          | 0.631579    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
+| 55                          | 0.618421    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
+| ...                         | ...         | ...                                                   |
+| 144                         | 0.302632    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
+| 154                         | 0.276316    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
+| 105                         | 0.223684    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
 
 ### 3. Evaluate the performances
