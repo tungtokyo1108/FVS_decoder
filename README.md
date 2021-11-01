@@ -111,7 +111,7 @@ The current number of features: 3 - MSE: 9.67
 
 ```
 
-### 2.1 Classification
+### 2.2 Classification
 
 After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the decision tree classifier is the best model with the highest accuracy. Thus, we start with combination of the decision tree classifier and forward variable selection. 
 
@@ -149,3 +149,9 @@ Outputs of forward variable selection are shown in table
 | 105                         | 0.223684    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
 
 ### 3. Evaluate the performances
+### 3.1. Regression 
+
+
+
+
+
