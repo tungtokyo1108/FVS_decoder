@@ -151,7 +151,7 @@ Outputs of forward variable selection are shown in table
 ### 3. Evaluate the performances
 ### 3.1. Regression 
 
-| Compare performance                  | Mapped brain region | 
+| Compare performance                  | Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) | 
 | --------------------------- |:-----------:|
 | ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_compare.png)|![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_mapping.png)   | 
 
