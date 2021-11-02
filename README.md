@@ -151,6 +151,11 @@ Outputs of forward variable selection are shown in table
 ### 3. Evaluate the performances
 ### 3.1. Regression 
 
+```
+fvs = AutoML_FVS()
+evaluate_kernelridge = fvs.evaluate_regression(kernelridge_model, data_full, data_selected, model = 'kernelridge')
+```
+
 | Compare performance                  | Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) | 
 | --------------------------- |:-----------:|
 | ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_compare.png)|![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_mapping.png)   | 
