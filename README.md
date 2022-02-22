@@ -29,18 +29,20 @@ result = automl.fit(X_train, y_train, X_test, y_test)
 ```
 Outputs are shown in table 
 
-| Name_Model                  | MSE       | MAE      | R2_Score |
-| --------------------------- |:---------:|:--------:|:--------:|
-| KernelRidge_regression      | 15.396256 | 3.192229 | 0.064702 |
-| LassoLars_regression        | 15.589468 | 3.193472 | 0.052964 |
-| MultiTaskLasso_regression   | 15.589468 | 3.193472 | 0.052964 |
-| Ridge_regression            | 16.224041 | 3.228338 | 0.014415 |
-| ElasticNet_regression       | 16.345417 | 3.239610 | 0.007041 |
-| Lars_regression             | 16.729033 | 3.252711 | -0.01626 |
-| Stochastic_Gradient_Descent | 17.032267 | 3.353871 | -0.03468 |
-| LASSO_regression            | 17.079694 | 3.252711 | -0.03756 |
-| DecisionTree_regression     | 18.015736 | 3.422243 | -0.09442 |
-| Random_Forest               | 18.892558 | 3.570010 | -0.14769 |
+| Rank |Name_Model                  | MSE       | MAE      | R2_Score |
+|------|--------------------------- |:---------:|:--------:|:--------:|
+|   1  |KernelRidge_regression      | 15.396256 | 3.192229 | 0.064702 |
+|   2  |LassoLars_regression        | 15.589468 | 3.193472 | 0.052964 |
+|   3  |MultiTaskLasso_regression   | 15.589468 | 3.193472 | 0.052964 |
+|   4  |Ridge_regression            | 16.224041 | 3.228338 | 0.014415 |
+|   5  |ElasticNet_regression       | 16.345417 | 3.239610 | 0.007041 |
+|   6  |Lars_regression             | 16.396985 | 3.252711 | -0.01626 |
+|   7  |eXtreme_Gradient_Boosting   | 16.729033 | 3.209346 | 0.003909 |
+|   8  |GaussianProcess_regression  | 16.739256 | 3.310950 | -0.01684 |
+|   9  |Stochastic_Gradient_Descent | 17.032267 | 3.353871 | -0.03468 |
+|  10  |LASSO_regression            | 17.079694 | 3.252711 | -0.03756 |
+|  11  |DecisionTree_regression     | 18.015736 | 3.422243 | -0.09442 |
+|  12  |Random_Forest               | 18.892558 | 3.570010 | -0.14769 |
 
 ### 1.2 Classification
 
