@@ -73,16 +73,17 @@ result = automl.fit(X_train, y_train, X_test, y_test)
 ```
 Outputs are shown in table 
 
-| Name_Model                  | Accuracy (%)| Precision | Recall   | F1_Score |
-| --------------------------- |:-----------:|:---------:|:--------:|:--------:|
-| Decision_Tree               | 45.105263   | 0.4523    | 0.4401   | 0.4536   |
-| Extra_Tree                  | 42.235273   | 0.4200    | 0.4185   | 0.4194   |
-| Random_Forest               | 39.526316   | 0.3915    | 0.3727   | 0.3876   |
-| Support_Vector_Machine      | 36.894737   | 0.3682    | 0.3427   | 0.3557   |
-| Gradient_Boosting           | 35.526316   | 0.3515    | 0.3456   | 0.3386   |
-| Stochastic_Gradient_Descent | 32.795747   | 0.3282    | 0.3227   | 0.3077   |
-| Losgistic_Classification    | 31.526316   | 0.3115    | 0.3017   | 0.3178   |
-| Naive_Bayes                 | 30.294832   | 0.3092    | 0.3087   | 0.3026   |
+| Rank | Name_Model                  | Accuracy (%)| Precision | Recall   | F1_Score |
+| -----|---------------------------- |:-----------:|:---------:|:--------:|:--------:|
+|   1  | Decision_Tree               | 45.105263   | 0.4523    | 0.4401   | 0.4536   |
+|   2  | Extra_Tree                  | 42.235273   | 0.4200    | 0.4185   | 0.4194   |
+|   3  | Random_Forest               | 39.526316   | 0.3915    | 0.3727   | 0.3876   |
+|   4  | eXtreme_Gradient_Boosting   | 38.337316   | 0.3855    | 0.3647   | 0.3766   |
+|   5  | Support_Vector_Machine      | 36.894737   | 0.3682    | 0.3427   | 0.3557   |
+|   6  | Gradient_Boosting           | 35.526316   | 0.3515    | 0.3456   | 0.3386   |
+|   7  | Stochastic_Gradient_Descent | 32.795747   | 0.3282    | 0.3227   | 0.3077   |
+|   8  | Losgistic_Classification    | 31.526316   | 0.3115    | 0.3017   | 0.3178   |
+|   9  | Naive_Bayes                 | 30.294832   | 0.3092    | 0.3087   | 0.3026   |
 
 ### 2. Forward variable selection algorithm
 ### 2.1 Regression
