@@ -19,6 +19,7 @@ import seaborn as sns
 import itertools
 from scipy import interp
 from itertools import cycle
+from scipy.stats import uniform, randint
 from sklearn.preprocessing import label_binarize
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import cross_val_score
@@ -36,6 +37,7 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, Matern, RationalQuadratic, ExpSineSquared, DotProduct, ConstantKernel
 from sklearn.tree import DecisionTreeRegressor, ExtraTreeRegressor
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+import xgboost as xgb
 
 class AutoML_Regression():
     
@@ -330,6 +332,34 @@ class AutoML_Regression():
         
         return rb_best, mse, mae, r2
     
+    def XGBoost(self, X_train, y_train, X_test, y_test): 
+        
+        hyperparameter = {
+            "colsample_bytree": [0.5, 1],
+            "gamma": [0.5, 1],
+            "max_depth": [5, 10, 25, 50, 75, 100], # default 3
+            "n_estimators": [5, 10, 50, 100, 150, 200, 250, 300], # default 100
+            "subsample": [0.5, 1]}
+        
+        my_cv = RepeatedKFold(n_splits=10, n_repeats=10, random_state=42)
+        base_model_rf = xgb.XGBRegressor(learning_rate = 0.01, silent=True, nthread=-1)
+        rsearch_cv = RandomizedSearchCV(estimator=base_model_rf, 
+                                   random_state=42,
+                                   param_distributions=hyperparameter,
+                                   n_iter=50,
+                                   cv=5,
+                                   scoring="neg_mean_squared_error",
+                                   n_jobs=-1)
+        rsearch_cv.fit(X_train, y_train)
+        rb_best = rsearch_cv.best_estimator_
+        rb_best.fit(X_train, y_train)
+        y_pred = rb_best.predict(X_test)
+        mae = mean_absolute_error(y_test, y_pred)
+        mse = mean_squared_error(y_test, y_pred)
+        r2 = r2_score(y_test, y_pred)
+        
+        return rb_best, mse, mae, r2
+    
     def fit(self, X_train, y_train, X_test, y_test):
         
         estimators = ["Ridge_regression", "LASSO_regression", "Lars_regression", 
@@ -338,6 +368,7 @@ class AutoML_Regression():
                       "KernelRidge_regression", "GaussianProcess_regression",
                       "Stochastic_Gradient_Descent", 
                       "DecisionTree_regression", "Random_Forest", 
+                      "eXtreme_Gradient_Boosting",
                       #"Naive_Bayes", "Support_Vector_Classification",
                        #Random_Forest", "Gradient_Boosting", "Extreme_Gradient_Boosting",
                        #"Random_Forest", "Gradient_Boosting",
@@ -376,6 +407,8 @@ class AutoML_Regression():
                 best_model, mse, mae, r2 = self.DecisionTree_regression(X_train, y_train, X_test, y_test)
             elif est == "Random_Forest":
                 best_model, mse, mae, r2 = self.Random_Forest(X_train, y_train, X_test, y_test)
+            elif est == "eXtreme_Gradient_Boosting":
+                best_model, mse, mae, r2 = self.XGBoost(X_train, y_train, X_test, y_test)
                 
             
             name_model.append(est)
@@ -395,52 +428,3 @@ class AutoML_Regression():
         all_info = all_info.sort_values(by="MAE", ascending=True).reset_index(drop=True)
         
         return all_info
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
