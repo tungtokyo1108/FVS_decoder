@@ -1,5 +1,9 @@
 # AutoML_FVS: A new approach to identify a important group of brain region from fMRI databases 
 
+## Alogorithm
+
+![Swagger Doc Screenshot](AutoML_FVS_Algorithm.png)
+
 ## Main commands and options
 
 ### 1. Automatic machine learning approaches 
