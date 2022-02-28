@@ -164,6 +164,8 @@ The current number of features: 21 - Accuracy: 64.47%
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.5min finished
 The current number of features: 37 - Accuracy: 68.42%
 
+.....
+
 ```
 
 Outputs of forward variable selection are shown in table
