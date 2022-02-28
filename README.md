@@ -116,8 +116,9 @@ The current number of features: 3 - MSE: 9.67
 
 ### 2.2 Classification
 
-After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the decision tree classifier is the best model with the highest accuracy. Thus, we start with combination of the decision tree classifier and forward variable selection. 
+After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the decision tree classifier is the best model with the highest accuracy. Thus, we start with combination of the decision tree classifier and random forest classifier and forward variable selection. 
 
+#### Decision tree classifier
 ```
 from FVS_algorithm import AutoML_FVS
 fvs = AutoML_FVS()
@@ -138,6 +139,33 @@ The current number of features: 54 - Accuracy: 63.16%
 .....
 
 ```
+
+#### Random forest classifier
+
+```
+all_info, all_model, f = fvs.RandomForest_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   34.9s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.2min finished
+The current number of features: 1 - Accuracy: 51.32%
+
+.....
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   33.5s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.6min finished
+The current number of features: 21 - Accuracy: 64.47%
+
+.....
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   33.9s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.5min finished
+The current number of features: 37 - Accuracy: 68.42%
+
+```
+
 Outputs of forward variable selection are shown in table
 
 | Number of selected features | Accuracy    | Name of selected feature                              |
