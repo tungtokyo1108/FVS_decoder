@@ -215,7 +215,7 @@ The current number of features: 1 - Accuracy: 46.05%
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.7s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:    2.4s finished
-The current number of features: 54 - Accuracy: 63.16%
+The current number of features: 27 - Accuracy: 60.53%
 
 .....
 
