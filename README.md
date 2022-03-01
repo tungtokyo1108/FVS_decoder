@@ -66,6 +66,36 @@ rumi = pd.read_csv("rumi.csv")
 rumi_region = rumi.drop(columns = ['MRI_ordID', 'CurrentDepression', 'Depressiongroup', 'TIV',
        'Age', 'Gender_1_male', 'BDI_Total', 'RRS_Brooding', 'RRS_Reflection', 'RRS_DepressiveRumination',
        'RRS_Total', 'Dep_PastEpisodes', 'Dep_Duration'])
+```
+
+### 1.2.1 Binary 
+
+```
+y = rumi_meta["Depressiongroup"].apply(lambda x: 0 
+                                          if x == "H" else 1)
+class_name = ["MDD-BPD", 'Healthy']
+X_train, X_test, y_train, y_test = train_test_split(rumi_region, y, test_size=0.3, random_state=42)
+
+automl = AutoML_classification()
+result = automl.fit(X_train, y_train, X_test, y_test)
+```
+Outputs are shown in table 
+
+| Rank | Name_Model                  | Accuracy (%)| Precision | Recall   | F1_Score |
+| -----|---------------------------- |:-----------:|:---------:|:--------:|:--------:|
+|   1  | Random_Forest               | 61.842105   | 0.6103    | 0.5923   | 0.5869   |
+|   2  | Extreme_Gradient_Boosting   | 60.115261   | 0.5903    | 0.5822   | 0.5614   |
+|   3  | Support_Vector_Machine      | 59.210526   | 0.5783    | 0.5655   | 0.5584   |
+|   4  | Gradient_Boosting           | 58.320126   | 0.5615    | 0.5691   | 0.5649   |
+|   5  | Losgistic_Classification    | 56.578947   | 0.5535    | 0.5571   | 0.5579   |
+|   6  | Naive_Bayes                 | 55.294832   | 0.5492    | 0.5387   | 0.5426   |
+|   7  | Stochastic_Gradient_Descent | 52.631579   | 0.5213    | 0.5215   | 0.5210   |
+|   8  | Decision_Tree               | 49.543053   | 0.4815    | 0.4943   | 0.4834   |
+|   9  | Extra_Tree                  | 43.421053   | 0.4265    | 0.4260   | 0.4262   |
+
+### 1.2.2 Multi-class 
+
+```
 y = rumi["Depressiongroup"].apply(lambda x: 0 
                                           if x == "MDD" else 1
                                           if x == "BPD" else 2)
