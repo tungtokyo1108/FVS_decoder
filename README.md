@@ -283,6 +283,7 @@ evaluate_kernelridge = fvs.evaluate_regression(kernelridge_model, data_full, dat
 
 | Random forest only                  | Random forest with Forward Variable Selection | 
 | ----------------------------------- |:---------------------------------------------:|
+| ![Swagger Doc Screenshot](RF_conf_matrix_binary.png)|![Swagger Doc Screenshot](RF_FVS_10_conf_matrix_multi.png)   | 
 
 ### 3.2.2 Multi-class
 
