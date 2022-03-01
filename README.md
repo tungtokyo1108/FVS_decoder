@@ -335,8 +335,26 @@ weighted avg       0.68      0.68      0.67        76
 | ![Swagger Doc Screenshot](RF_conf_matrix_multi.png)|![Swagger Doc Screenshot](RF_FVS_37_conf_matrix_multi.png)   | 
 
 
+#### Decision tree classifier
+We evaluate the decision tree model with 27 brain regions that seletected by forward variable selection. 
 
+```
+fvs = AutoML_FVS()
+evaluate_decisiontree = fvs.evaluate_multiclass(selected_decisiontree_model, data_full, data_selected,
+                            model = 'Decision Tree', num_class=3, class_name = class_name))
+                                  
+Classification report for Decision Tree model: 
 
+              precision    recall  f1-score   support
 
+         MDD       0.72      0.46      0.57        28
+         BPD       0.55      0.40      0.46        15
+      Health       0.57      0.82      0.68        33
+
+    accuracy                           0.61        76
+   macro avg       0.61      0.56      0.57        76
+weighted avg       0.62      0.61      0.59        76
+
+```
 
 
