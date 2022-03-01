@@ -267,7 +267,7 @@ Outputs of forward variable selection are shown in table
 
 ```
 fvs = AutoML_FVS()
-evaluate_kernelridge = fvs.evaluate_regression(kernelridge_model, data_full, data_selected, model = 'kernelridge')
+evaluate_kernelridge = fvs.evaluate_regression(selected_kernelridge_model, data_full, data_selected, model = 'kernelridge')
 ```
 
 | Compare performance                  | Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) | 
@@ -280,6 +280,12 @@ evaluate_kernelridge = fvs.evaluate_regression(kernelridge_model, data_full, dat
 ### 3.2.1 Binary
 
 #### Random forest classifier
+
+```
+fvs = AutoML_FVS()
+evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected, model = 'Random Forest'
+                                  num_class=2, top_features=10, class_name = class_name))
+```
 
 | Random forest only                  | Random forest with Forward Variable Selection | 
 | ----------------------------------- |:---------------------------------------------:|
