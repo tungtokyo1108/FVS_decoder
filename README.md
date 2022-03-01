@@ -302,7 +302,7 @@ weighted avg       0.81      0.80      0.80        76
 
 | Random forest for 246 brain regions | Random forest for 10 selected brain regions | 
 | ----------------------------------- |:---------------------------------------------:|
-| ![Swagger Doc Screenshot](RF_conf_matrix_binary.png)|![Swagger Doc Screenshot](RF_FVS_10_conf_matrix_multi.png)   | 
+| ![Swagger Doc Screenshot](RF_conf_matrix_binary.png)|![Swagger Doc Screenshot](RF_FVS_10_conf_matrix_binary.png)   | 
 
 
 ### 3.2.2 Multi-class
@@ -329,7 +329,9 @@ weighted avg       0.68      0.68      0.67        76
 
 ```
 
-
+| Random forest for 246 brain regions | Random forest for 37 selected brain regions | 
+| ----------------------------------- |:---------------------------------------------:|
+| ![Swagger Doc Screenshot](RF_conf_matrix_multi.png)|![Swagger Doc Screenshot](RF_FVS_37_conf_matrix_multi.png)   | 
 
 
 
