@@ -262,6 +262,7 @@ Outputs of forward variable selection are shown in table
 | 154                         | 0.276316    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
 | 105                         | 0.223684    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
 
+
 ### 3. Evaluate the performances
 ### 3.1. Regression 
 
@@ -284,8 +285,8 @@ We evaluate the random forest model with 10 brain regions that seletected by for
 
 ```
 fvs = AutoML_FVS()
-evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected, model = 'Random Forest'
-                                  num_class=2, top_features=10, class_name = class_name))
+evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected, 
+                            model = 'Random Forest', num_class=2, class_name = class_name))
                                   
 Classification report for Random Forest model: 
 
@@ -312,8 +313,8 @@ We evaluate the random forest model with 37 brain regions that seletected by for
 
 ```
 fvs = AutoML_FVS()
-evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected, model = 'Random Forest'
-                                  num_class=3, top_features=10, class_name = class_name))
+evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected,
+                            model = 'Random Forest', num_class=3, class_name = class_name))
                                   
 Classification report for Random Forest model: 
 
