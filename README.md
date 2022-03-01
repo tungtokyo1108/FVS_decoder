@@ -152,6 +152,53 @@ The current number of features: 3 - MSE: 9.67
 
 After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the decision tree classifier is the best model with the highest accuracy. Thus, we start with combination of the decision tree classifier and random forest classifier and forward variable selection. 
 
+### 2.2.1 Binary
+
+#### Random forest classifier
+
+```
+all_info, all_model, f = fvs.RandomForest_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.2s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.1min finished
+The current number of features: 1 - Accuracy: 67.11%
+
+.....
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.5s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.1min finished
+The current number of features: 10 - Accuracy: 80.26%
+
+.....
+
+[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
+[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.2s
+[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:   27.2s finished
+The current number of features: 195 - Accuracy: 64.47%
+
+.....
+
+```
+
+Outputs of forward variable selection are shown in table
+
+| Number of selected features | Accuracy    | Name of selected feature                                                |
+| --------------------------- |:-----------:|:-----------------------------------------------------------------------:|
+| 10                          | 0.802632    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
+| 73                          | 0.789474    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
+| ...                         | ...         | ...                                                                     |
+| 60                          | 0.776316    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
+| 8                           | 0.763158    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
+| ...                         | ...         | ...                                                                     |
+| 3                           | 0.710526    | BNA229lBGdlPUT, BNA167lINSdIa, BNA228rBGdCdN                            |
+| ...                         | ...         | ...                                                                     |
+| 154                         | 0.697368    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
+| ...                         | ...         | ...                                                                     |
+
+### 2.2.2 Multi-class
+
 #### Decision tree classifier
 ```
 from FVS_algorithm import AutoML_FVS
