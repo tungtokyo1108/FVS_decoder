@@ -275,6 +275,26 @@ evaluate_kernelridge = fvs.evaluate_regression(kernelridge_model, data_full, dat
 | ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_compare.png)|![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_mapping.png)   | 
 
 
+### 3.2. Classification
+
+### 3.2.1 Binary
+
+#### Random forest classifier
+
+| Random forest only                  | Random forest with Forward Variable Selection | 
+| ----------------------------------- |:---------------------------------------------:|
+
+### 3.2.2 Multi-class
+
+
+
+
+
+
+
+
+
+
 
 
 
