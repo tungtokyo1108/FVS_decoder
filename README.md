@@ -357,4 +357,10 @@ weighted avg       0.62      0.61      0.59        76
 
 ```
 
+| Decision tree for 246 brain regions | Decision tree for 27 selected brain regions by FVS | 
+| ----------------------------------- |:---------------------------------------------:|
+| ![Swagger Doc Screenshot](DT_conf_matrix_multi.png)|![Swagger Doc Screenshot](DT_FVS_27_conf_matrix_multi.png)   | 
+
+
+
 
