@@ -119,7 +119,7 @@ Outputs are shown in table
 |   8  | Losgistic_Classification    | 31.526316   | 0.3115    | 0.3017   | 0.3178   |
 |   9  | Naive_Bayes                 | 30.294832   | 0.3092    | 0.3087   | 0.3026   |
 
-### 2. Forward variable selection algorithm
+### 2. Forward Variable Selection algorithm - FVS
 ### 2.1 Regression
 
 After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the kernel ridge regression is the best model with the smallest value of MSE. Thus, we start with combination of the kernel ridge regression and forward variable selection. 
@@ -300,7 +300,7 @@ weighted avg       0.81      0.80      0.80        76
 
 ```
 
-| Random forest for 246 brain regions | Random forest for 10 selected brain regions | 
+| Random forest for 246 brain regions | Random forest for 10 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
 | ![Swagger Doc Screenshot](RF_conf_matrix_binary.png)|![Swagger Doc Screenshot](RF_FVS_10_conf_matrix_binary.png)   | 
 
@@ -329,7 +329,7 @@ weighted avg       0.68      0.68      0.67        76
 
 ```
 
-| Random forest for 246 brain regions | Random forest for 37 selected brain regions | 
+| Random forest for 246 brain regions | Random forest for 37 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
 | ![Swagger Doc Screenshot](RF_conf_matrix_multi.png)|![Swagger Doc Screenshot](RF_FVS_37_conf_matrix_multi.png)   | 
 
