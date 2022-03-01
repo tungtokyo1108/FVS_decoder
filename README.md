@@ -300,7 +300,7 @@ weighted avg       0.81      0.80      0.80        76
 
 ```
 
-| Random forest for 246 brain re  ndom forest with Forward Variable Selection | 
+| Random forest for 246 brain regions | Random forest for 10 selected brain regions | 
 | ----------------------------------- |:---------------------------------------------:|
 | ![Swagger Doc Screenshot](RF_conf_matrix_binary.png)|![Swagger Doc Screenshot](RF_FVS_10_conf_matrix_multi.png)   | 
 
