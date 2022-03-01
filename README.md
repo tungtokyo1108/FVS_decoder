@@ -291,8 +291,8 @@ Classification report for Random Forest model:
 
               precision    recall  f1-score   support
 
-           0       0.85      0.67      0.75        33
-           1       0.78      0.91      0.84        43
+      Health       0.85      0.67      0.75        33
+     MDD-BPD       0.78      0.91      0.84        43
 
     accuracy                           0.80        76
    macro avg       0.81      0.79      0.79        76
@@ -307,9 +307,27 @@ weighted avg       0.81      0.80      0.80        76
 
 ### 3.2.2 Multi-class
 
+#### Random forest classifier
+We evaluate the random forest model with 37 brain regions that seletected by forward variable selection. 
 
+```
+fvs = AutoML_FVS()
+evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected, model = 'Random Forest'
+                                  num_class=3, top_features=10, class_name = class_name))
+                                  
+Classification report for Random Forest model: 
 
+              precision    recall  f1-score   support
 
+         MDD       0.73      0.57      0.64        28
+         BPD       0.58      0.47      0.52        15
+      Health       0.69      0.88      0.77        33
+
+    accuracy                           0.68        76
+   macro avg       0.67      0.64      0.64        76
+weighted avg       0.68      0.68      0.67        76
+
+```
 
 
 
