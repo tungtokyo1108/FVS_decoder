@@ -280,16 +280,30 @@ evaluate_kernelridge = fvs.evaluate_regression(selected_kernelridge_model, data_
 ### 3.2.1 Binary
 
 #### Random forest classifier
+We evaluate the random forest model with 10 brain regions that seletected by forward variable selection. 
 
 ```
 fvs = AutoML_FVS()
 evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected, model = 'Random Forest'
                                   num_class=2, top_features=10, class_name = class_name))
+                                  
+Classification report for Random Forest model: 
+
+              precision    recall  f1-score   support
+
+           0       0.85      0.67      0.75        33
+           1       0.78      0.91      0.84        43
+
+    accuracy                           0.80        76
+   macro avg       0.81      0.79      0.79        76
+weighted avg       0.81      0.80      0.80        76
+
 ```
 
-| Random forest only                  | Random forest with Forward Variable Selection | 
+| Random forest for 246 brain re  ndom forest with Forward Variable Selection | 
 | ----------------------------------- |:---------------------------------------------:|
 | ![Swagger Doc Screenshot](RF_conf_matrix_binary.png)|![Swagger Doc Screenshot](RF_FVS_10_conf_matrix_multi.png)   | 
+
 
 ### 3.2.2 Multi-class
 
