@@ -300,6 +300,7 @@ Classification report for Random Forest model:
 weighted avg       0.81      0.80      0.80        76
 
 ```
+* The precision of health was 0.85, in other words, when RF predicts that a individual is health control, it is averagely correct 85% of the time. 
 
 | Random forest for 246 brain regions | Random forest for 10 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
