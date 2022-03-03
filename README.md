@@ -292,8 +292,8 @@ Classification report for Random Forest model:
 
               precision    recall  f1-score   support
 
-      Health       0.85      0.67      0.75        33
-     MDD-BPD       0.78      0.91      0.84        43
+     MDD-BPD       0.85      0.67      0.75        33
+      Health       0.78      0.91      0.84        43
 
     accuracy                           0.80        76
    macro avg       0.81      0.79      0.79        76
