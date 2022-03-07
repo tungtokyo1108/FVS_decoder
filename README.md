@@ -271,6 +271,11 @@ fvs = AutoML_FVS()
 evaluate_kernelridge = fvs.evaluate_regression(selected_kernelridge_model, data_full, data_selected, model = 'kernelridge')
 ```
 
+| Kernel Ridge for 246 brain regions | Kernel Ridge for 20 selected brain regions by FVS | 
+| ----------------------------------- |:---------------------------------------------:|
+| ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_onl.png)|![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_FVS.png)   | 
+
+
 | Compare performance                  | Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) | 
 | --------------------------- |:-----------:|
 | ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_compare.png)|![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_mapping.png)   | 
