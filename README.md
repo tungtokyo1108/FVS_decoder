@@ -1,4 +1,4 @@
-<img src="Logo.png">
+<img src="Logo.png" width="300">
 
 # AutoML_FVS: A new approach to identify a important group of brain region from fMRI databases 
 
