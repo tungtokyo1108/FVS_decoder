@@ -1,4 +1,4 @@
-# ![Swagger Doc Screenshot](Logo.png)AutoML_FVS: A new approach to identify a important group of brain region from fMRI databases 
+<img src="Logo.png"> # AutoML_FVS: A new approach to identify a important group of brain region from fMRI databases 
 
 ## The workflow of the algorithm
 
