@@ -298,10 +298,10 @@ class AutoML_classification():
         
         n_estimators = [5, 10, 50, 100, 150, 200, 250, 300]
         max_depth = [5, 10, 25, 50, 75, 100]
-        min_child_weight = [5, 10, 25, 50, 75, 100]
-        gamma = [0.5, 1, 1.5, 2, 5]
-        subsample = [0.2, 0.4, 0.6, 0.8, 1]
-        colsample_bytree = [0.2, 0.4, 0.6, 0.8, 1]
+        min_child_weight = [10, 25, 50]
+        gamma = [0.5, 1]
+        subsample = [0.5, 1]
+        colsample_bytree = [0.5, 1]
         
         hyperparameter = {'n_estimators': n_estimators,
                       'max_depth': max_depth,
@@ -312,9 +312,9 @@ class AutoML_classification():
         
         n_folds = 10
         my_cv = TimeSeriesSplit(n_splits = n_folds).split(X_train)
-        xgb = XGBClassifier(learning_rate=0.02, objective='multi:softmax', silent=True, nthread=-1)
+        xgb = XGBClassifier(learning_rate=0.02, objective='multi:softmax', silent=True)
         rsearch_cv = RandomizedSearchCV(estimator=xgb, param_distributions=hyperparameter, n_iter=50, 
-                               scoring='f1_macro', n_jobs=-1, cv=my_cv, verbose=3, random_state=42)
+                               scoring='f1_macro', n_jobs=-1, cv=5, verbose=3, random_state=42)
         rsearch_cv.fit(X_train, y_train)
         xgb_best = rsearch_cv.best_estimator_
         xgb_best.fit(X_train, y_train)
@@ -393,7 +393,8 @@ class AutoML_classification():
     def fit(self, X_train, y_train, X_test, y_test):
         
         estimators = ["Losgistic_Regression", "Stochastic_Gradient_Descent", "Naive_Bayes", "Support_Vector_Classification",
-                       #Random_Forest", "Gradient_Boosting", "Extreme_Gradient_Boosting",
+                       #Random_Forest", "Gradient_Boosting", 
+                       "Extreme_Gradient_Boosting",
                        "Random_Forest", "Gradient_Boosting",
                        "Decision_Tree", "Extra_Tree"]
         name_model = []
