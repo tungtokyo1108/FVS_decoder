@@ -37,18 +37,17 @@ Outputs are shown in table
 
 | Rank |Name_Model                  | MSE       | MAE      | R2_Score |
 |------|--------------------------- |:---------:|:--------:|:--------:|
-|   1  |KernelRidge_regression      | 15.396256 | 3.192229 | 0.064702 |
-|   2  |LassoLars_regression        | 15.589468 | 3.193472 | 0.052964 |
-|   3  |MultiTaskLasso_regression   | 15.589468 | 3.193472 | 0.052964 |
-|   4  |Ridge_regression            | 16.224041 | 3.228338 | 0.014415 |
-|   5  |ElasticNet_regression       | 16.345417 | 3.239610 | 0.007041 |
-|   6  |Lars_regression             | 16.396985 | 3.252711 | -0.01626 |
-|   7  |eXtreme_Gradient_Boosting   | 16.729033 | 3.209346 | 0.003909 |
-|   8  |GaussianProcess_regression  | 16.739256 | 3.310950 | -0.01684 |
-|   9  |Stochastic_Gradient_Descent | 17.032267 | 3.353871 | -0.03468 |
-|  10  |LASSO_regression            | 17.079694 | 3.252711 | -0.03756 |
-|  11  |DecisionTree_regression     | 18.015736 | 3.422243 | -0.09442 |
-|  12  |Random_Forest               | 18.892558 | 3.570010 | -0.14769 |
+|   1  |LassoLars_regression        | 0.547196  | 0.454167 | 0.201219 |
+|   2  |MultiTaskLasso_regression   | 0.558322  | 0.468323 | 0.194563 |
+|   3  |GaussianProcess_regression  | 0.566105  | 0.485591 | 0.145952 |
+|   4  |Ridge_regression            | 0.567103  | 0.490016 | 0.138169 |
+|   5  |ElasticNet_regression       | 0.567914  | 0.490908 | 0.136645 |
+|   6  |Random_Forest               | 0.572277  | 0.480769 | 0.154432 |
+|   7  |Lars_regression             | 0.578837  | 0.498872 | 0.122593 |
+|   8  |LASSO_regression            | 0.582059  | 0.503492 | 0.114467 |
+|   9  |KernelRidge_regression      | 0.583765  | 0.516645 | 0.091333 |
+|  10  |DecisionTree_regression     | 0.611971  | 0.566921 | 0.002910 |
+|  11  |Stochastic_Gradient_Descent | 0.613786  | 0.568636 | -0.00010 |
 
 ### 1.2 Classification
 
