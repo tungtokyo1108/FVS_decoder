@@ -174,14 +174,13 @@ fvs = AutoML_FVS()
 evaluate_LassoLars = fvs.evaluate_regression(selected_LassoLars_model, data_full, data_selected, model = 'LassoLars')
 ```
 
-| Kernel Ridge for 246 brain regions | Kernel Ridge for 20 selected brain regions by FVS | 
+| LassoLar for 246 brain regions | LassoLar for 54 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
-| ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_onl.png)|![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_FVS.png)   | 
+| ![Swagger Doc Screenshot](LassoLars_onl.png)|![Swagger Doc Screenshot](LassoLars_FVS.png)   | 
 
 
-| Compare performance                  | Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) | 
-| --------------------------- |:-----------:|
-| ![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_compare.png)|![Swagger Doc Screenshot](RRS_Brooding_BPD_KR_mapping.png)   | 
+Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
+![Swagger Doc Screenshot](LassoLars_brain.png) 
 
 
 ### 3.2. Classification
@@ -211,11 +210,12 @@ weighted avg       0.81      0.80      0.80        76
 * The precision of MDD-BPD case was 0.75, in other words, when RF predicts that a individual is MDD-BPD case, it is averagely correct 75% of the time. 
 * The recall of MDD-BPD case was 0.84, in other words, RF correctly identifies 84% of MDD-BPD cases.
 
-| Random forest for 246 brain regions | Random forest for 10 selected brain regions by FVS | 
+| Random forest for 246 brain regions | Random forest for 87 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
-| ![Swagger Doc Screenshot](RF_conf_matrix_binary.png)|![Swagger Doc Screenshot](RF_FVS_10_conf_matrix_binary.png)   | 
+| ![Swagger Doc Screenshot](RandomForest_onl.png)|![Swagger Doc Screenshot](RandomForest_FVS.png)   | 
 
-
+Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
+![Swagger Doc Screenshot](RandomForest_brain.png) 
 
 
 
