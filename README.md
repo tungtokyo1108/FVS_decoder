@@ -23,11 +23,11 @@ from Auto_ML_Regression import AutoML_Regression
 Import data and run automatic machine learning algorithm 
 
 ```
-ress_BPD_brain = pd.read_csv("BPD_brain.csv", header=None)
-ress_BPD_meta = pd.read_csv("BPD_rrs.csv", header=None)
-y = ress_BPD_meta["RRS_Brooding"]
+bna = pd.read_csv("ROI_catROI_bna_Vgm.csv", index_col="BNAsubjID")
+meta = pd.read_csv("NEOFFI.csv", index_col="Subject")
+y = meta["AgeTag"]
 
-X_train, X_test, y_train, y_test = train_test_split(ress_BPD_brain, y, test_size=0.3, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, random_state=42)
 
 automl = AutoML_Regression()
 result = automl.fit(X_train, y_train, X_test, y_test)
@@ -64,19 +64,12 @@ from Auto_ML_Multiclass import AutoML_classification
 Import data and run automatic machine learning algorithm 
 
 ```
-rumi = pd.read_csv("rumi.csv")
-rumi_region = rumi.drop(columns = ['MRI_ordID', 'CurrentDepression', 'Depressiongroup', 'TIV',
-       'Age', 'Gender_1_male', 'BDI_Total', 'RRS_Brooding', 'RRS_Reflection', 'RRS_DepressiveRumination',
-       'RRS_Total', 'Dep_PastEpisodes', 'Dep_Duration'])
-```
-
-### 1.2.1 Binary 
-
-```
-y = rumi_meta["Depressiongroup"].apply(lambda x: 0 
-                                          if x == "H" else 1)
-class_name = ["MDD-BPD", 'Healthy']
-X_train, X_test, y_train, y_test = train_test_split(rumi_region, y, test_size=0.3, random_state=42)
+bna = pd.read_csv("ROI_catROI_bna_Vgm.csv", index_col="BNAsubjID")
+meta = pd.read_csv("NEOFFI.csv", index_col="Subject")
+y = meta["Gender"].apply(lambda x: 0 
+                             if x == "M" else 1)
+class_name = ["Male", "Female"]
+X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, random_state=42)
 
 automl = AutoML_classification()
 result = automl.fit(X_train, y_train, X_test, y_test)
@@ -95,56 +88,31 @@ Outputs are shown in table
 |   8  | Decision_Tree               | 49.543053   | 0.4815    | 0.4943   | 0.4834   |
 |   9  | Extra_Tree                  | 43.421053   | 0.4265    | 0.4260   | 0.4262   |
 
-### 1.2.2 Multi-class 
-
-```
-y = rumi["Depressiongroup"].apply(lambda x: 0 
-                                          if x == "MDD" else 1
-                                          if x == "BPD" else 2)
-class_name = ["MDD", "BPD", 'Healthy']
-X_train, X_test, y_train, y_test = train_test_split(rumi_region, y, test_size=0.3, random_state=42)
-
-automl = AutoML_classification()
-result = automl.fit(X_train, y_train, X_test, y_test)
-```
-Outputs are shown in table 
-
-| Rank | Name_Model                  | Accuracy (%)| Precision | Recall   | F1_Score |
-| -----|---------------------------- |:-----------:|:---------:|:--------:|:--------:|
-|   1  | Decision_Tree               | 45.105263   | 0.4523    | 0.4401   | 0.4536   |
-|   2  | Extra_Tree                  | 42.235273   | 0.4200    | 0.4185   | 0.4194   |
-|   3  | Random_Forest               | 39.526316   | 0.3915    | 0.3727   | 0.3876   |
-|   4  | eXtreme_Gradient_Boosting   | 38.337316   | 0.3855    | 0.3647   | 0.3766   |
-|   5  | Support_Vector_Machine      | 36.894737   | 0.3682    | 0.3427   | 0.3557   |
-|   6  | Gradient_Boosting           | 35.526316   | 0.3515    | 0.3456   | 0.3386   |
-|   7  | Stochastic_Gradient_Descent | 32.795747   | 0.3282    | 0.3227   | 0.3077   |
-|   8  | Losgistic_Classification    | 31.526316   | 0.3115    | 0.3017   | 0.3178   |
-|   9  | Naive_Bayes                 | 30.294832   | 0.3092    | 0.3087   | 0.3026   |
 
 ### 2. Forward Variable Selection algorithm - FVS
 ### 2.1 Regression
 
-After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the kernel ridge regression is the best model with the smallest value of MSE. Thus, we start with combination of the kernel ridge regression and forward variable selection. 
+After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the LassoLars regression is the best model with the smallest value of MSE. Thus, we start with combination of the LassoLars regression and forward variable selection. 
 
 ```
 from FVS_algorithm import AutoML_FVS
 fvs = AutoML_FVS()
-all_info, all_model, f = fvs.KernelRidge_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
+all_info, all_model, f = fvs.LassoLars_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
 
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   38.9s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.4min finished
-The current number of features: 1 - MSE: 12.51
+The current number of features: 1 - MSE: 0.61
 
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   36.9s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.4min finished
-The current number of features: 2 - MSE: 10.48
+The current number of features: 2 - MSE: 0.60
 
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   41.4s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.5min finished
-The current number of features: 3 - MSE: 9.67
+The current number of features: 3 - MSE: 0.59
 
 .....
 
@@ -153,8 +121,6 @@ The current number of features: 3 - MSE: 9.67
 ### 2.2 Classification
 
 After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the decision tree classifier is the best model with the highest accuracy. Thus, we start with combination of the decision tree classifier and random forest classifier and forward variable selection. 
-
-### 2.2.1 Binary
 
 #### Random forest classifier
 
@@ -171,14 +137,14 @@ The current number of features: 1 - Accuracy: 67.11%
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.5s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.1min finished
-The current number of features: 10 - Accuracy: 80.26%
+The current number of features: 10 - Accuracy: 70.26%
 
 .....
 
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.2s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:   27.2s finished
-The current number of features: 195 - Accuracy: 64.47%
+The current number of features: 87 - Accuracy: 82.63%
 
 .....
 
@@ -199,78 +165,13 @@ Outputs of forward variable selection are shown in table
 | 154                         | 0.697368    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
 | ...                         | ...         | ...                                                                     |
 
-### 2.2.2 Multi-class
-
-#### Decision tree classifier
-```
-from FVS_algorithm import AutoML_FVS
-fvs = AutoML_FVS()
-all_info, all_model, f = fvs.DecisionTree_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
-
-[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    3.2s
-[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:    4.7s finished
-The current number of features: 1 - Accuracy: 46.05%
-
-.....
-
-[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.7s
-[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:    2.4s finished
-The current number of features: 27 - Accuracy: 60.53%
-
-.....
-
-```
-
-#### Random forest classifier
-
-```
-all_info, all_model, f = fvs.RandomForest_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
-
-[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   34.9s
-[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.2min finished
-The current number of features: 1 - Accuracy: 51.32%
-
-.....
-
-[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   33.5s
-[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.6min finished
-The current number of features: 21 - Accuracy: 64.47%
-
-.....
-
-[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   33.9s
-[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.5min finished
-The current number of features: 37 - Accuracy: 68.42%
-
-.....
-
-```
-
-Outputs of forward variable selection are shown in table
-
-| Number of selected features | Accuracy    | Name of selected feature                              |
-| --------------------------- |:-----------:|:-----------------------------------------------------:|
-| 64                          | 0.631579    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
-| 50                          | 0.631579    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
-| 49                          | 0.631579    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
-| 55                          | 0.618421    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
-| ...                         | ...         | ...                                                   |
-| 144                         | 0.302632    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
-| 154                         | 0.276316    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
-| 105                         | 0.223684    | BNA198rMOVCvmPOS, BNA232rThamPFtha, BNA079lSTG...     |
-
 
 ### 3. Evaluate the performances
 ### 3.1. Regression 
 
 ```
 fvs = AutoML_FVS()
-evaluate_kernelridge = fvs.evaluate_regression(selected_kernelridge_model, data_full, data_selected, model = 'kernelridge')
+evaluate_LassoLars = fvs.evaluate_regression(selected_LassoLars_model, data_full, data_selected, model = 'LassoLars')
 ```
 
 | Kernel Ridge for 246 brain regions | Kernel Ridge for 20 selected brain regions by FVS | 
@@ -285,10 +186,8 @@ evaluate_kernelridge = fvs.evaluate_regression(selected_kernelridge_model, data_
 
 ### 3.2. Classification
 
-### 3.2.1 Binary
-
 #### Random forest classifier
-We evaluate the random forest model with 10 brain regions that seletected by forward variable selection. 
+We evaluate the random forest model with 87 brain regions that seletected by forward variable selection. 
 
 ```
 fvs = AutoML_FVS()
@@ -317,60 +216,6 @@ weighted avg       0.81      0.80      0.80        76
 | ![Swagger Doc Screenshot](RF_conf_matrix_binary.png)|![Swagger Doc Screenshot](RF_FVS_10_conf_matrix_binary.png)   | 
 
 
-### 3.2.2 Multi-class
-
-#### Random forest classifier
-We evaluate the random forest model with 37 brain regions that seletected by forward variable selection. 
-
-```
-fvs = AutoML_FVS()
-evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected,
-                            model = 'Random Forest', num_class=3, class_name = class_name))
-                                  
-Classification report for Random Forest model: 
-
-              precision    recall  f1-score   support
-
-         MDD       0.73      0.57      0.64        28
-         BPD       0.58      0.47      0.52        15
-      Health       0.69      0.88      0.77        33
-
-    accuracy                           0.68        76
-   macro avg       0.67      0.64      0.64        76
-weighted avg       0.68      0.68      0.67        76
-
-```
-
-| Random forest for 246 brain regions | Random forest for 37 selected brain regions by FVS | 
-| ----------------------------------- |:---------------------------------------------:|
-| ![Swagger Doc Screenshot](RF_conf_matrix_multi.png)|![Swagger Doc Screenshot](RF_FVS_37_conf_matrix_multi.png)   | 
-
-
-#### Decision tree classifier
-We evaluate the decision tree model with 27 brain regions that seletected by forward variable selection. 
-
-```
-fvs = AutoML_FVS()
-evaluate_decisiontree = fvs.evaluate_multiclass(selected_decisiontree_model, data_full, data_selected,
-                            model = 'Decision Tree', num_class=3, class_name = class_name))
-                                  
-Classification report for Decision Tree model: 
-
-              precision    recall  f1-score   support
-
-         MDD       0.72      0.46      0.57        28
-         BPD       0.55      0.40      0.46        15
-      Health       0.57      0.82      0.68        33
-
-    accuracy                           0.61        76
-   macro avg       0.61      0.56      0.57        76
-weighted avg       0.62      0.61      0.59        76
-
-```
-
-| Decision tree for 246 brain regions | Decision tree for 27 selected brain regions by FVS | 
-| ----------------------------------- |:---------------------------------------------:|
-| ![Swagger Doc Screenshot](DT_conf_matrix_multi.png)|![Swagger Doc Screenshot](DT_FVS_27_conf_matrix_multi.png)   | 
 
 
 
