@@ -176,7 +176,7 @@ evaluate_LassoLars = fvs.evaluate_regression(selected_LassoLars_model, data_full
 
 | LassoLar for 246 brain regions | LassoLar for 54 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
-| ![Swagger Doc Screenshot](LassoLars_onl.png)|![Swagger Doc Screenshot](LassoLars_FVS.png)   | 
+| ![Swagger Doc Screenshot](LassoLars_onl.jpg)|![Swagger Doc Screenshot](LassoLars_FVS.jpg)   | 
 
 
 Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
@@ -212,7 +212,7 @@ weighted avg       0.81      0.80      0.80        76
 
 | Random forest for 246 brain regions | Random forest for 87 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
-| ![Swagger Doc Screenshot](RandomForest_onl.png)|![Swagger Doc Screenshot](RandomForest_FVS.png)   | 
+| ![Swagger Doc Screenshot](RandomForest_onl.jpg)|![Swagger Doc Screenshot](RandomForest_FVS.jpg)   | 
 
 Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
 ![Swagger Doc Screenshot](RandomForest_brain.png) 
