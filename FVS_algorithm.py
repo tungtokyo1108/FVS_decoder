@@ -223,6 +223,22 @@ class AutoML_FVS():
         
         return all_info, all_model, f
     
+    def LassoLars_FVS(self, X_train, y_train, X_test, y_test, n_selected_features = 100, scoring='neg_mean_squared_error'):
+        
+        n_samples, n_features = X_train.shape
+        
+        alphas = np.logspace(-5, 5, 100)
+        tuned_parameters = [{"alpha": alphas}]
+        my_cv = RepeatedKFold(n_splits=10, n_repeats=10, random_state=42)
+        model = LassoLars()
+        
+        scoring = "neg_mean_squared_error"
+        n_selected_features = 240
+
+        
+        
+        
+    
     
 
 
