@@ -153,8 +153,8 @@ Outputs of forward variable selection are shown in table
 
 | Number of selected features | Accuracy    | Name of selected feature                                                |
 | --------------------------- |:-----------:|:-----------------------------------------------------------------------:|
-| 10                          | 0.802632    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
-| 73                          | 0.789474    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
+| 87                          | 0.8263      | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
+| 73                          | 0.7894.     | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
 | ...                         | ...         | ...                                                                     |
 | 60                          | 0.776316    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
 | 8                           | 0.763158    | BNA167lINSdIa, BNA228rBGdCdN, BNA185lCingA23c, BNA216rHipprHipp,...     |
