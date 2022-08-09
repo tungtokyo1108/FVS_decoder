@@ -9,7 +9,6 @@
 ## Main commands and options
 
 ### 1. Automatic machine learning approaches 
-### 1.1 Regression
 
 First of all, we import some packages that are necessary to analyze the database 
 
@@ -22,6 +21,8 @@ from sklearn.model_selection import train_test_split
 from Auto_ML_Regression import AutoML_Regression
 from Auto_ML_Multiclass import AutoML_classification
 ```
+
+### 1.1 Regression
 
 Import data 
 
@@ -36,7 +37,7 @@ We separate the input data: 70% for training procress and 30% for testing proces
 X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, random_state=42)
 ```
 
-We run automatic machine learning algorithm
+We run automatic machine learning algorithm for regression
 ```
 automl = AutoML_Regression()
 result = automl.fit(X_train, y_train, X_test, y_test)
@@ -59,16 +60,7 @@ Outputs are shown in table
 
 ### 1.2 Classification
 
-```
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-from Auto_ML_Multiclass import AutoML_classification
-```
-
-Import data and run automatic machine learning algorithm 
+Import data and label groups for classification run automatic machine learning algorithm 
 
 ```
 bna = pd.read_csv("ROI_catROI_bna_Vgm.csv", index_col="BNAsubjID")
@@ -76,8 +68,15 @@ meta = pd.read_csv("NEOFFI.csv", index_col="Subject")
 y = meta["Gender"].apply(lambda x: 0 
                              if x == "M" else 1)
 class_name = ["Male", "Female"]
-X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, random_state=42)
+```
 
+We separate the input data: 70% for training procress and 30% for testing process 
+```
+X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, random_state=42)
+```
+
+We run automatic machine learning algorithm for classification
+```
 automl = AutoML_classification()
 result = automl.fit(X_train, y_train, X_test, y_test)
 ```
