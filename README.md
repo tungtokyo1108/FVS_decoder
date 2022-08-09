@@ -60,7 +60,7 @@ Outputs are shown in table
 
 ### 1.2 Classification
 
-Import data and label groups for classification run automatic machine learning algorithm 
+Import data and label groups for classification 
 
 ```
 bna = pd.read_csv("ROI_catROI_bna_Vgm.csv", index_col="BNAsubjID")
