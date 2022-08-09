@@ -11,6 +11,8 @@
 ### 1. Automatic machine learning approaches 
 ### 1.1 Regression
 
+First of all, we import some packages that are necessary to analyze the database 
+
 ```
 import pandas as pd
 import numpy as np
@@ -20,18 +22,23 @@ from sklearn.model_selection import train_test_split
 from Auto_ML_Regression import AutoML_Regression
 ```
 
-Import data and run automatic machine learning algorithm 
+Import data 
 
 ```
 bna = pd.read_csv("ROI_catROI_bna_Vgm.csv", index_col="BNAsubjID")
 meta = pd.read_csv("NEOFFI.csv", index_col="Subject")
 y = meta["AgeTag"]
+```
 
+We separate the input data: 70% for training procress and 30% for testing process 
+```
 X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, random_state=42)
+```
 
+We run automatic machine learning algorithm
+```
 automl = AutoML_Regression()
 result = automl.fit(X_train, y_train, X_test, y_test)
-
 ```
 Outputs are shown in table 
 
