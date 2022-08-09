@@ -20,6 +20,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import train_test_split
 from Auto_ML_Regression import AutoML_Regression
+from Auto_ML_Multiclass import AutoML_classification
 ```
 
 Import data 
