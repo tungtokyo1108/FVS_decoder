@@ -66,6 +66,10 @@ kr_best, _, _, _ = automl.KernelRidge_regression(X_train, y_train, X_test, y_tes
 kr_best.fit(X_train, y_train)
 y_pred = kr_best.predict(X_test)
 
+rd_best, _, _, _ = automl.Ridge_regression(X_train, y_train, X_test, y_test)
+rd_best.fit(X_train, y_train)
+y_pred = rd_best.predict(X_test) 
+
 dt = {"True AgeTag": y_test, "Predicted AgeTag": y_pred}
 df = pd.DataFrame(dt)
 
@@ -79,10 +83,33 @@ g.set(xlim = (min(y_test), max(y_test)))
 ################### Step 3 - Run forward algorithm ############################
 ###############################################################################
 
+fvs = AutoML_FVS()
+all_info, all_model, f = fvs.KernelRidge_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Ridge_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
 
 
+###################################################################################
 
+subset = f
+subset = subset.drop(columns = "All")
+load_grid_model = all_model
 
+best_model_69 = load_grid_model[8]
+subset = subset.iloc[8].dropna()
+region_subset = bna[subset]
+
+X_train, X_test, y_train, y_test = train_test_split(region_subset, y, test_size=0.3, random_state=42)
+
+best_model_69.fit(X_train, y_train)
+y_pred_fvs = best_model_69.predict(X_test)
+
+dt = {"True AgeTag": y_test, "Predicted AgeTag": y_pred_fvs}
+df = pd.DataFrame(dt)
+
+g = sns.lmplot(x="True AgeTag", y="Predicted AgeTag", data=df)
+g.set(ylim = (min(y_test), max(y_test)))
+g.set(xlim = (min(y_test), max(y_test)))
 
 
 
