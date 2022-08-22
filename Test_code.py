@@ -22,7 +22,7 @@ import math
 from scipy.stats import spearmanr
 from Auto_ML_Multiclass import AutoML_classification
 from Auto_ML_Regression import AutoML_Regression
-from FVS_Regression import AutoML_FVS
+from FVS_Regression import AutoML_FVS_Regression
 import warnings 
 warnings.simplefilter("ignore")
 
@@ -81,7 +81,7 @@ evaluate_r = automl.evaluate_regression(rf_best, X_train, y_train, X_test, y_tes
 ################### Step 3 - Run forward variable selection (FVS) algorithm ########################
 ####################################################################################################
 
-fvs = AutoML_FVS()
+fvs = AutoML_FVS_Regression()
 
 all_info, all_model, f = fvs.KernelRidge_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
 
@@ -108,8 +108,8 @@ subset = f
 subset = subset.drop(columns = "All")
 load_grid_model = all_model
 
-best_model_69 = load_grid_model[8]
-subset = subset.iloc[8].dropna()
+best_model_69 = load_grid_model[6]
+subset = subset.iloc[6].dropna()
 region_subset = bna[subset]
 
 X_train, X_test, y_train, y_test = train_test_split(region_subset, y, test_size=0.3, random_state=42)
