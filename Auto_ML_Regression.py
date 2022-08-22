@@ -37,6 +37,12 @@ from sklearn.gaussian_process import GaussianProcessRegressor
 from sklearn.gaussian_process.kernels import RBF, Matern, RationalQuadratic, ExpSineSquared, DotProduct, ConstantKernel
 from sklearn.tree import DecisionTreeRegressor, ExtraTreeRegressor
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor
+from sklearn.inspection import permutation_importance
+from sklearn.metrics import mean_squared_error, r2_score
+import math
+from scipy.stats import spearmanr
+from statsmodels.stats.multitest import fdrcorrection 
+from scipy import stats
 import xgboost as xgb
 
 class AutoML_Regression():
@@ -131,7 +137,7 @@ class AutoML_Regression():
         mae = mean_absolute_error(y_test, y_pred)
         mse = mean_squared_error(y_test, y_pred)
         r2 = r2_score(y_test, y_pred)
-        
+
         return best_model, mse, mae, r2
     
     def MultiTaskLasso_regression(self, X_train, y_train, X_test, y_test):
@@ -368,11 +374,7 @@ class AutoML_Regression():
                       "KernelRidge_regression", "GaussianProcess_regression",
                       "Stochastic_Gradient_Descent", 
                       "DecisionTree_regression", "Random_Forest", 
-                      "eXtreme_Gradient_Boosting",
-                      #"Naive_Bayes", "Support_Vector_Classification",
-                       #Random_Forest", "Gradient_Boosting", "Extreme_Gradient_Boosting",
-                       #"Random_Forest", "Gradient_Boosting",
-                       #"Decision_Tree", "Extra_Tree"
+                      #"eXtreme_Gradient_Boosting",
                       ]
         
         name_model = []
@@ -407,8 +409,8 @@ class AutoML_Regression():
                 best_model, mse, mae, r2 = self.DecisionTree_regression(X_train, y_train, X_test, y_test)
             elif est == "Random_Forest":
                 best_model, mse, mae, r2 = self.Random_Forest(X_train, y_train, X_test, y_test)
-            elif est == "eXtreme_Gradient_Boosting":
-                best_model, mse, mae, r2 = self.XGBoost(X_train, y_train, X_test, y_test)
+            #elif est == "eXtreme_Gradient_Boosting":
+            #    best_model, mse, mae, r2 = self.XGBoost(X_train, y_train, X_test, y_test)
                 
             
             name_model.append(est)
@@ -428,52 +430,76 @@ class AutoML_Regression():
         all_info = all_info.sort_values(by="MAE", ascending=True).reset_index(drop=True)
         
         return all_info
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
+    def evaluate_regression(self, best_clf, X_train, y_train, X_test, y_test, model="Random Forest",
+                            name_target = "agetag", feature_evaluate = True, top_features=2):
+        
+        print("-"*100)
+        print("~~~~~~~~~~~~~~~~~~ PERFORMANCE EVALUATION ~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("Detailed report for the {} algorithm".format(model))
+        
+        best_clf.fit(X_train, y_train)
+        y_pred = best_clf.predict(X_test)
+        
+        spearman_corr, p_value = spearmanr(y_test, y_pred)
+        mse = mean_squared_error(y_test, y_pred)
+        
+        print("\nMean_Squared_Error of the {} model is {}".format(
+            model, np.round(mse, 4)))
+        
+        print("\nSpearman correlation of the {} model is {} with p-value {}".format(
+            model, np.round(spearman_corr, 4), p_value))
+        
+        xlabel = "True_" + name_target
+        ylabel = "Predicted_" + name_target
+        dt = {xlabel: y_test, ylabel: y_pred}
+        df = pd.DataFrame(dt)
+        
+        plt.figure(figsize=(12,12))
+        g = sns.lmplot(x=xlabel, y=ylabel, data=df)
+        g.set(ylim = (min(y_test), max(y_test)))
+        g.set(xlim = (min(y_test), max(y_test)))
+        plt.show()
+        
+        if feature_evaluate == True:
+            result = permutation_importance(best_clf, X_test, y_test, n_repeats=10, random_state=42, n_jobs=-1)
+            sorted_idx = result.importances_mean.argsort()
+            plt.figure(figsize=(12,12))
+            plt.boxplot(
+                result.importances[sorted_idx].T,
+                vert=False,
+                labels=np.array(X_train.columns)[sorted_idx],
+            )
+            plt.title("Permutation Importance (test set)")
+            plt.show()
+        
+        if model == "Random Forest" or model == "XGBoost":
+            importances = best_clf.feature_importances_
+            indices = np.argsort(importances)[::-1]
+        
+            feature_tab = pd.DataFrame({"Features": list(X_train.columns),
+                                    "Importance": importances})
+            feature_tab = feature_tab.sort_values("Importance", ascending = False).reset_index(drop=True)
+        
+            index = feature_tab["Features"].iloc[:top_features]
+            importance_desc = feature_tab["Importance"].iloc[:top_features]  
+            feature_space = []
+            for i in range(indices.shape[0]-1, -1, -1):
+                feature_space.append(X_train.columns[indices[i]])
+        
+            fig, ax = plt.subplots(figsize=(20,20))
+            ax = plt.gca()
+            plt.title("Feature importances", fontsize=30)
+            plt.barh(index, importance_desc, align="center", color="blue", alpha=0.6)
+            plt.grid(axis="x", color="white", linestyle="-")
+            plt.xlabel("The Average of Decrease in Impurity", fontsize=20)
+            plt.ylabel("Features", fontsize=30)
+            plt.yticks(fontsize=30)
+            plt.xticks(fontsize=20)
+            ax.tick_params(axis="both", which="both", length=0)
+            plt.show()
+        
+            return {"importance": feature_tab, 
+                    "y_pred": y_pred}
+        
+        return y_pred
