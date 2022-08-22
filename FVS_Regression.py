@@ -46,7 +46,7 @@ from statsmodels.stats.multitest import fdrcorrection
 from scipy import stats
 import time
 
-class AutoML_FVS():
+class AutoML_FVS_Regression():
     
     def __init__(self, random_state = None):
         self.random_state = random_state
@@ -399,76 +399,4 @@ class AutoML_FVS():
                                           my_cv=5, n_selected_features = n_selected_features)
         return all_info, all_model, f
     
-
-        
-        
-        
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
