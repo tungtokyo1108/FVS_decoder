@@ -392,7 +392,8 @@ class AutoML_classification():
         
     def fit(self, X_train, y_train, X_test, y_test):
         
-        estimators = ["Losgistic_Regression", "Stochastic_Gradient_Descent", "Naive_Bayes", "Support_Vector_Classification",
+        estimators = ["Losgistic_Regression", "Stochastic_Gradient_Descent", "Naive_Bayes", 
+                      #"Support_Vector_Classification",
                        #Random_Forest", "Gradient_Boosting", 
                        #"Extreme_Gradient_Boosting",
                        "Random_Forest", "Gradient_Boosting",
@@ -412,8 +413,8 @@ class AutoML_classification():
                 best_model, accuracy, precision, recall, f1 = self.Stochastic_Gradient_Descent(X_train, y_train, X_test, y_test) 
             elif est == "Naive_Bayes":
                 best_model, accuracy, precision, recall, f1 = self.Naive_Bayes(X_train, y_train, X_test, y_test)
-            elif est == "Support_Vector_Classification":
-                best_model, accuracy, precision, recall, f1 = self.Support_Vector_Classify(X_train, y_train, X_test, y_test)
+            #elif est == "Support_Vector_Classification":
+            #    best_model, accuracy, precision, recall, f1 = self.Support_Vector_Classify(X_train, y_train, X_test, y_test)
             elif est == "Random_Forest":
                 best_model, accuracy, precision, recall, f1 = self.Random_Forest(X_train, y_train, X_test, y_test)
             elif est == "Gradient_Boosting": 
