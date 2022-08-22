@@ -43,7 +43,7 @@ import math
 from scipy.stats import spearmanr
 from statsmodels.stats.multitest import fdrcorrection 
 from scipy import stats
-import xgboost as xgb
+#import xgboost as xgb
 
 class AutoML_Regression():
     
@@ -337,7 +337,7 @@ class AutoML_Regression():
         r2 = r2_score(y_test, y_pred)
         
         return rb_best, mse, mae, r2
-    
+    """
     def XGBoost(self, X_train, y_train, X_test, y_test): 
         
         hyperparameter = {
@@ -365,6 +365,7 @@ class AutoML_Regression():
         r2 = r2_score(y_test, y_pred)
         
         return rb_best, mse, mae, r2
+    """
     
     def fit(self, X_train, y_train, X_test, y_test):
         
