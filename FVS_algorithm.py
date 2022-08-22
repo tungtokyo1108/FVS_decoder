@@ -44,7 +44,68 @@ class AutoML_FVS():
     
     def __init__(self, random_state = None):
         self.random_state = random_state
+    
         
+    def FVS_grid(self, X_train, y_train, X_test, y_test, model, tuned_parameters, my_cv, n_selected_features = 100):
+       
+        F = []
+        count = 0
+        ddict = {}
+        all_F = []
+        all_c = []
+        all_acc = []
+        all_mse = []
+        all_model = []
+        start = time.time()
+        while count < n_selected_features:
+            max_acc = 0
+            min_err = np.inf
+            time_loop = time.time()
+    
+            for i in X_train.columns:
+                if i not in F:
+                    F.append(i)
+                    X_train_tmp = X_train[F]
+                    acc = 0
+                    gsearch_cv = GridSearchCV(estimator = model, param_grid = tuned_parameters, 
+                                      scoring = "neg_mean_squared_error", cv = my_cv, n_jobs=-1)
+                    gsearch_cv.fit(X_train_tmp, y_train)
+                    best_estimator = gsearch_cv.best_estimator_
+                    y_pred = best_estimator.predict(X_test[F])
+                    mse = mean_squared_error(y_test, y_pred)
+                    F.pop()
+                    if mse < min_err:
+                        min_err = mse
+                        idx = i
+                        best_model = best_estimator
+                    
+            F.append(idx)
+            count += 1
+            
+            print("The current number of features: {} - MSE: {}".format(count, round(min_err, 2)))
+            print("Time for computation: {}".format(time.time() - time_loop))
+
+            all_F.append(np.array(F))
+            all_c.append(count)
+            all_acc.append(max_acc)
+            all_model.append(best_model)
+            all_mse.append(min_err)
+
+        c = pd.DataFrame(all_c)
+        a = pd.DataFrame(all_acc)
+        f = pd.DataFrame(all_F)  
+        e = pd.DataFrame(all_mse)  
+        f["All"] = f[f.columns[0:]].apply(
+            lambda x: ', '.join(x.dropna().astype(str)), axis=1)
+
+        all_info = pd.concat([c, e, a, f["All"]], axis=1)    
+        all_info.columns = ['Num_feature', 'Mean_Squared_Error', 'Accuracy', 'Feature']    
+        all_info = all_info.sort_values(by='Mean_Squared_Error', ascending=True).reset_index(drop=True)
+        
+        return all_info, all_model, f
+    
+        
+    
     def KernelRidge_FVS(self, X_train, y_train, X_test, y_test, n_selected_features = 100, scoring='neg_mean_squared_error'):
         
         n_samples, n_features = X_train.shape
