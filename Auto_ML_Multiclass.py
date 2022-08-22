@@ -41,7 +41,7 @@ from sklearn.naive_bayes import MultinomialNB
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.svm import SVC
 from sklearn.model_selection import TimeSeriesSplit, GridSearchCV, RandomizedSearchCV
-from xgboost import XGBClassifier
+#from xgboost import XGBClassifier
 
 
 class AutoML_classification():
@@ -293,7 +293,7 @@ class AutoML_classification():
         f1 = np.round(metrics.f1_score(y_test, y_pred, average="macro"), 4)
         
         return gb_best, test_accuracy, precision, recall, f1
-    
+    """
     def Extreme_Gradient_Boosting(self, X_train, y_train, X_test, y_test):
         
         n_estimators = [5, 10, 50, 100, 150, 200, 250, 300]
@@ -325,7 +325,7 @@ class AutoML_classification():
         f1 = np.round(metrics.f1_score(y_test, y_pred, average="macro"), 4)
         
         return xgb_best, test_accuracy, precision, recall, f1
-    
+    """
     def Decision_Tree(self, X_train, y_train, X_test, y_test):
         
         max_depth = [5, 10, 25, 50, 75, 100]
@@ -394,7 +394,7 @@ class AutoML_classification():
         
         estimators = ["Losgistic_Regression", "Stochastic_Gradient_Descent", "Naive_Bayes", "Support_Vector_Classification",
                        #Random_Forest", "Gradient_Boosting", 
-                       "Extreme_Gradient_Boosting",
+                       #"Extreme_Gradient_Boosting",
                        "Random_Forest", "Gradient_Boosting",
                        "Decision_Tree", "Extra_Tree"]
         name_model = []
@@ -571,44 +571,4 @@ class AutoML_classification():
     
         return {"y_pred": y_pred,
                 "y_pred_prob": y_pred_prob}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
