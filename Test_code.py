@@ -23,6 +23,7 @@ from scipy.stats import spearmanr
 from Auto_ML_Multiclass import AutoML_classification
 from Auto_ML_Regression import AutoML_Regression
 from FVS_Regression import AutoML_FVS_Regression
+from FVS_Classification import AutoML_FVS_Classification
 import warnings 
 warnings.simplefilter("ignore")
 
@@ -79,7 +80,9 @@ evaluate_r = automl.evaluate_regression(rf_best, X_train, y_train, X_test, y_tes
 
 ####################################################################################################
 ################### Step 3 - Run forward variable selection (FVS) algorithm ########################
+###################################### Regression algorithm ########################################
 ####################################################################################################
+
 
 fvs = AutoML_FVS_Regression()
 
@@ -102,7 +105,7 @@ all_info, all_model, f = fvs.Lasso_FVS(X_train, y_train, X_test, y_test, n_selec
 all_info, all_model, f = fvs.GaussianProcess_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
 
 
-###################################################################################
+### Evaluation 
 
 subset = f
 subset = subset.drop(columns = "All")
@@ -117,5 +120,60 @@ X_train, X_test, y_train, y_test = train_test_split(region_subset, y, test_size=
 best_model_69.fit(X_train, y_train)
 evaluate_r = automl.evaluate_regression(best_model_69, X_train, y_train, X_test, y_test, model="Ridge regression",
                                         name_target = "AgeTag", feature_evaluate = True)
+
+
+################################## Classification algorithm ########################################
+####################################################################################################
+
+fvs = AutoML_FVS_Classification()
+
+all_info, all_model, f = fvs.Logistic_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Naive_Bayes_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Decision_Tree_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Random_Forest_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Stochastic_Gradient_Descent_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Gradient_Boosting_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Support_Vector_Classify_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+### Evaluation 
+
+subset = f
+subset = subset.drop(columns = "All")
+load_grid_model = all_model
+
+best_model_8 = load_grid_model[8]
+subset = subset.iloc[8].dropna()
+region_subset = bna[subset]
+
+X_train, X_test, y_train, y_test = train_test_split(region_subset, y, test_size=0.3, random_state=42)
+
+best_model_8.fit(X_train, y_train)
+evaluate_logistic = automl.evaluate_multiclass(best_model_8, X_train, y_train, X_test, y_test,
+                            model = "Losgistic_Regression", num_class=2, class_name = class_name)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
