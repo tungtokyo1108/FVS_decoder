@@ -22,7 +22,9 @@ import math
 from scipy.stats import spearmanr
 from Auto_ML_Multiclass import AutoML_classification
 from Auto_ML_Regression import AutoML_Regression
-from FVS_algorithm import AutoML_FVS
+from FVS_Regression import AutoML_FVS
+import warnings 
+warnings.simplefilter("ignore")
 
 ###############################################################################
 ############################## Read data set ##################################
@@ -63,30 +65,41 @@ automl = AutoML_Regression()
 result = automl.fit(X_train, y_train, X_test, y_test)
 
 kr_best, _, _, _ = automl.KernelRidge_regression(X_train, y_train, X_test, y_test)
-kr_best.fit(X_train, y_train)
-y_pred = kr_best.predict(X_test)
+evaluate_r = automl.evaluate_regression(kr_best, X_train, y_train, X_test, y_test, model="Kernal Ridge regression",
+                                        name_target = "AgeTag", feature_evaluate = True)
 
 rd_best, _, _, _ = automl.Ridge_regression(X_train, y_train, X_test, y_test)
-rd_best.fit(X_train, y_train)
-y_pred = rd_best.predict(X_test) 
+evaluate_r = automl.evaluate_regression(rd_best, X_train, y_train, X_test, y_test, model="Ridge regression",
+                                        name_target = "AgeTag", feature_evaluate = True)
 
-dt = {"True AgeTag": y_test, "Predicted AgeTag": y_pred}
-df = pd.DataFrame(dt)
-
-g = sns.lmplot(x="True AgeTag", y="Predicted AgeTag", data=df)
-g.set(ylim = (min(y_test), max(y_test)))
-g.set(xlim = (min(y_test), max(y_test)))
-#plt.text(-0.015, 0.006, r'Corr = %.2f' % (spearmanr(y_test, y_pred)[0]))
+rf_best, _, _, _ = automl.Random_Forest(X_train, y_train, X_test, y_test)
+evaluate_r = automl.evaluate_regression(rf_best, X_train, y_train, X_test, y_test, model="Random Forest",
+                                        name_target = "AgeTag", feature_evaluate = False, top_features=10)
 
 
-###############################################################################
-################### Step 3 - Run forward algorithm ############################
-###############################################################################
+####################################################################################################
+################### Step 3 - Run forward variable selection (FVS) algorithm ########################
+####################################################################################################
 
 fvs = AutoML_FVS()
+
 all_info, all_model, f = fvs.KernelRidge_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
 
+all_info, all_model, f = fvs.RF_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Stochastic_Gradient_Descent_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.DecisionTree_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.ElasticNet_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.LassoLars_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
 all_info, all_model, f = fvs.Ridge_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.Lasso_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
+
+all_info, all_model, f = fvs.GaussianProcess_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
 
 
 ###################################################################################
@@ -102,47 +115,7 @@ region_subset = bna[subset]
 X_train, X_test, y_train, y_test = train_test_split(region_subset, y, test_size=0.3, random_state=42)
 
 best_model_69.fit(X_train, y_train)
-y_pred_fvs = best_model_69.predict(X_test)
-
-dt = {"True AgeTag": y_test, "Predicted AgeTag": y_pred_fvs}
-df = pd.DataFrame(dt)
-
-g = sns.lmplot(x="True AgeTag", y="Predicted AgeTag", data=df)
-g.set(ylim = (min(y_test), max(y_test)))
-g.set(xlim = (min(y_test), max(y_test)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+evaluate_r = automl.evaluate_regression(best_model_69, X_train, y_train, X_test, y_test, model="Ridge regression",
+                                        name_target = "AgeTag", feature_evaluate = True)
 
 
