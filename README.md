@@ -98,8 +98,7 @@ Outputs are shown in table
 |  11  |Stochastic_Gradient_Descent | 0.613786  | 0.568636 | -0.00010 |
 
 We run a function to show the performance of ML algorithm.
-|      |AutoML_Regression.(self, best_clf, X_train, y_train, X_test, y_test, model="Random Forest",
-                            name_target = "agetag", feature_evaluate = True, top_features=2):|
+|      |AutoML_Regression.(self, best_clf, X_train, y_train, X_test, y_test, model="Random Forest", name_target = "agetag", feature_evaluate = True, top_features=2):|
 |------|--------------------------- |
 | Parameters | X_train, y_train: input data for training process|
 |            | X_test, y_test: input data for testing process   |
