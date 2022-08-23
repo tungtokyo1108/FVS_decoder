@@ -98,16 +98,31 @@ Outputs are shown in table
 |  11  |Stochastic_Gradient_Descent | 0.613786  | 0.568636 | -0.00010 |
 
 We run a function to show the performance of ML algorithm.
-|      |AutoML_Regression.(self, best_clf, X_train, y_train, X_test, y_test, model="Random Forest", name_target = "agetag", feature_evaluate = True, top_features=2):|
+|      |AutoML_Regression.evaluate_regression(best_clf, X_train, y_train, X_test, y_test, model="Random Forest", name_target = "agetag", feature_evaluate = True, top_features=2)|
 |------|--------------------------- |
-| Parameters | X_train, y_train: input data for training process|
+| Parameters | best_clf: a selected ML algorithm|
+|            | X_train, y_train: input data for training process|
 |            | X_test, y_test: input data for testing process   |
-| Returns    | a table: rank of performances of 11 ML regresion |
+|            | model: name of ML algorithm                      |
+|            | name_target: name of target variable             |
+|            | feature_evaluate: show plot of permutation feature importance            |
+|            | top_features: show plot of feature importance of Random Forest           |
+| Returns    | a table: MSE and spearman correlation |
+|            | plots: feature importance |
 
 ```
 kr_best, _, _, _ = automl.KernelRidge_regression(X_train, y_train, X_test, y_test)
 evaluate_r = automl.evaluate_regression(kr_best, X_train, y_train, X_test, y_test, model="Kernal Ridge regression",
                                         name_target = "AgeTag", feature_evaluate = True)
+                                        
+~~~~~~~~~~~~~~~~~~ PERFORMANCE EVALUATION ~~~~~~~~~~~~~~~~~~~~~~~~
+
+Detailed report for the Kernal Ridge regression algorithm
+
+Mean_Squared_Error of the Kernal Ridge regression model is 0.5603
+
+Spearman correlation of the Kernal Ridge regression model is 0.1758 with p-value 0.0012587919926902718
+
 ```
 
 ### 1.2 Classification
