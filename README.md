@@ -10,7 +10,9 @@
 
 ### Install step 
 1 - Download and unzip package  
-<img src="Photos/Step_0_1.png" width="200" height="200">
+<img src="Photos/Step_0_1.png" width="300" height="300">
+2 - In Spyder, change "working directory" to unzip package 
+<img src="Photos/Step_0_2.png" width="300" height="300">
 
 ### 1. Automatic machine learning approaches 
 
