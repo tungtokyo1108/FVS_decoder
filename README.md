@@ -72,15 +72,18 @@ X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, rando
 ```
 
 We run automatic machine learning algorithm for regression
+
 |      |AutoML_Regression.fit(X_train, y_train, X_test, y_test)|
 |------|--------------------------- |
 | Parameters | X_train, y_train: input data for training process|
 |            | X_test, y_test: input data for testing process   |
 | Returns    | a table: rank of performances of 11 ML regresion |
+
 ```
 automl = AutoML_Regression()
 result = automl.fit(X_train, y_train, X_test, y_test)
 ```
+
 Outputs are shown in table 
 
 | Rank |Name_Model                  | MSE       | MAE      | R2_Score |
@@ -98,6 +101,7 @@ Outputs are shown in table
 |  11  |Stochastic_Gradient_Descent | 0.613786  | 0.568636 | -0.00010 |
 
 We run a function to show the performance of ML algorithm.
+
 |      |AutoML_Regression.evaluate_regression(best_clf, X_train, y_train, X_test, y_test, model="Random Forest", name_target = "agetag", feature_evaluate = True, top_features=2)|
 |------|--------------------------- |
 | Parameters | best_clf: a selected ML algorithm|
@@ -111,17 +115,17 @@ We run a function to show the performance of ML algorithm.
 |            | plots: feature importance |
 
 ```
-kr_best, _, _, _ = automl.KernelRidge_regression(X_train, y_train, X_test, y_test)
-evaluate_r = automl.evaluate_regression(kr_best, X_train, y_train, X_test, y_test, model="Kernal Ridge regression",
+LL_best, _, _, _ = automl.LassoLars_regression(X_train, y_train, X_test, y_test)
+evaluate = automl.evaluate_regression(LL_best, X_train, y_train, X_test, y_test, model="LassoLars regression",
                                         name_target = "AgeTag", feature_evaluate = True)
                                         
 ~~~~~~~~~~~~~~~~~~ PERFORMANCE EVALUATION ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Detailed report for the Kernal Ridge regression algorithm
+Detailed report for the LassoLars regression algorithm
 
-Mean_Squared_Error of the Kernal Ridge regression model is 0.5603
+Mean_Squared_Error of the LassoLars regression model is 0.5603
 
-Spearman correlation of the Kernal Ridge regression model is 0.1758 with p-value 0.0012587919926902718
+Spearman correlation of the LassoLars regression model is 0.1758 with p-value 0.0012587919926902718
 
 ```
 
@@ -130,23 +134,31 @@ Spearman correlation of the Kernal Ridge regression model is 0.1758 with p-value
 Import data and label groups for classification 
 
 ```
-bna = pd.read_csv("ROI_catROI_bna_Vgm.csv", index_col="BNAsubjID")
-meta = pd.read_csv("NEOFFI.csv", index_col="Subject")
-y = meta["Gender"].apply(lambda x: 0 
-                             if x == "M" else 1)
+bna = pd.read_csv("ROI_test.csv", index_col="BNAsubjID")
+meta = pd.read_csv("Meta_test.csv", index_col="Subject")
+y = meta["Gender"].apply(lambda x: 0 if x == "M" else 1)
 class_name = ["Male", "Female"]
 ```
 
 We separate the input data: 70% for training procress and 30% for testing process 
+
 ```
 X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, random_state=42)
 ```
 
 We run automatic machine learning algorithm for classification
+
+|      |AutoML_classification.fit(X_train, y_train, X_test, y_test)|
+|------|--------------------------- |
+| Parameters | X_train, y_train: input data for training process.   |
+|            | X_test, y_test: input data for testing process       |
+| Returns    | a table: rank of performances of 9 ML classification |
+
 ```
 automl = AutoML_classification()
 result = automl.fit(X_train, y_train, X_test, y_test)
 ```
+
 Outputs are shown in table 
 
 | Rank | Name_Model                  | Accuracy (%)| Precision | Recall   | F1_Score |
@@ -161,6 +173,52 @@ Outputs are shown in table
 |   8  | Decision_Tree               | 49.543053   | 0.4815    | 0.4943   | 0.4834   |
 |   9  | Extra_Tree                  | 43.421053   | 0.4265    | 0.4260   | 0.4262   |
 
+We run a function to show the performance of ML algorithm.
+
+|      |AutoML_classification.evaluate_multiclass(self, best_clf, X_train, y_train, X_test, y_test, model="Random Forest", num_class=3, top_features=2, class_name = "")|
+|------|--------------------------- |
+| Parameters | best_clf: a selected ML algorithm|
+|            | X_train, y_train: input data for training process|
+|            | X_test, y_test: input data for testing process   |
+|            | model: name of ML algorithm                      |
+|            | num_class: number of classes for classification             |
+|            | class_name: names of classes            |
+|            | top_features: show plot of feature importance of Random Forest           |
+| Returns    | a dictionary: accuracy, precision, recall and F1 score |
+|            | plots: confusion matrix, AUC and feature importance |
+
+```
+logistic_best, _, _, _, _ = automl.LogisticRegression(X_train, y_train, X_test, y_test)
+evaluate_logistic = automl.evaluate_multiclass(logistic_best, X_train, y_train, X_test, y_test,
+                            model = "Losgistic_Regression", num_class=2, class_name = class_name)
+                                        
+~~~~~~~~~~~~~~~~~~ PERFORMANCE EVALUATION ~~~~~~~~~~~~~~~~~~~~~~~~
+
+Detailed report for the Losgistic_Regression algorithm
+The number of accurate predictions out of 334 data points on unseen data is 262
+Accuracy of the Losgistic_Regression model on unseen data is 78.44
+Precision of the Losgistic_Regression model on unseen data is 0.7813
+Recall of the Losgistic_Regression model on unseen data is 0.7782
+F1 score of the Losgistic_Regression model on unseen data is 0.7795
+
+Classification report for Losgistic_Regression model: 
+
+              precision    recall  f1-score   support
+
+           0       0.76      0.73      0.75       145
+           1       0.80      0.83      0.81       189
+
+    accuracy                           0.78       334
+   macro avg       0.78      0.78      0.78       334
+weighted avg       0.78      0.78      0.78       334
+
+
+The Confusion Matrix: 
+
+[[106  39]
+ [ 33 156]]
+
+```
 
 ### 2. Forward Variable Selection algorithm - FVS
 ### 2.1 Regression
