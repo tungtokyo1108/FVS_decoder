@@ -230,6 +230,7 @@ After selecting the best algorithm for analyzing our database, we go to the next
 | Parameters | X_train, y_train: input data for training process.   |
 |            | X_test, y_test: input data for testing process       |
 |            | model: name of models with combining with FVS. Please select one of them: LassoLars, KernelRidge, Random_Forest, Stochastic_Gradient_Descent, DecisionTree, ElasticNet, Ridge, Lasso, GaussianProcess     |
+|            | n_selected_features: number of features that is wanted to select       |
 | Returns    | all_infor: rank of performances of ML algorithm for number of features |
 |            | all_model: a model responses a number of features |
 |            | f: all of selected features |
@@ -270,6 +271,7 @@ After selecting the best algorithm for analyzing our database, we go to the next
 | Parameters | X_train, y_train: input data for training process.   |
 |            | X_test, y_test: input data for testing process       |
 |            | model: name of models with combining with FVS. Please select one of them: Random_Forest, Stochastic_Gradient_Descent, DecisionTree, Logistic, Naive_Bayes, Gradient_Boosting, Support_Vector_Classify     |
+|            | n_selected_features: number of features that is wanted to select       |
 | Returns    | all_infor: rank of performances of ML algorithm for number of features |
 |            | all_model: a model responses a number of features |
 |            | f: all of selected features |
