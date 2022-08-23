@@ -4,7 +4,7 @@
 
 ## The workflow of the algorithm
 
-![Swagger Doc Screenshot](AutoML_FVS_Algorithm.png)
+<img src="Photos/AutoML_FVS_Algorithm.png" width="1000" height="1000">
 
 ## Main commands and options
 
