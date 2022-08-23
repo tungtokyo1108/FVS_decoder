@@ -377,10 +377,10 @@ weighted avg       0.81      0.80      0.80        76
 
 | Random forest for 246 brain regions | Random forest for 87 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
-| ![Swagger Doc Screenshot](RandomForest_onl.jpg)|![Swagger Doc Screenshot](RandomForest_FVS.jpg)   | 
+| <img src="Photos/RandomForest_onl.jpg" width="500" height="500">|<img src="Photos/RandomForest_FVS.jpg" width="500" height="500">| 
 
 Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
-![Swagger Doc Screenshot](RandomForest_brain.png) 
+<img src="Photos/RandomForest_brain.png" width="700" height="500">
 
 
 
