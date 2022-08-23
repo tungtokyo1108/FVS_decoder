@@ -188,35 +188,35 @@ We run a function to show the performance of ML algorithm.
 |            | plots: confusion matrix, AUC and feature importance |
 
 ```
-logistic_best, _, _, _, _ = automl.LogisticRegression(X_train, y_train, X_test, y_test)
-evaluate_logistic = automl.evaluate_multiclass(logistic_best, X_train, y_train, X_test, y_test,
-                            model = "Losgistic_Regression", num_class=2, class_name = class_name)
+rf_best, _, _, _, _ = automl.Random_Forest(X_train, y_train, X_test, y_test)
+evaluate_rf = automl.evaluate_multiclass(rf_best, X_train, y_train, X_test, y_test,
+                            model = "Random_Forest", num_class=2, class_name = class_name)
                                         
 ~~~~~~~~~~~~~~~~~~ PERFORMANCE EVALUATION ~~~~~~~~~~~~~~~~~~~~~~~~
 
-Detailed report for the Losgistic_Regression algorithm
-The number of accurate predictions out of 334 data points on unseen data is 262
-Accuracy of the Losgistic_Regression model on unseen data is 78.44
-Precision of the Losgistic_Regression model on unseen data is 0.7813
-Recall of the Losgistic_Regression model on unseen data is 0.7782
-F1 score of the Losgistic_Regression model on unseen data is 0.7795
+Detailed report for the Random_Forest algorithm
+The number of accurate predictions out of 334 data points on unseen data is 253
+Accuracy of the Random_Forest model on unseen data is 75.75
+Precision of the Random_Forest model on unseen data is 0.7532
+Recall of the Random_Forest model on unseen data is 0.7528
+F1 score of the Random_Forest model on unseen data is 0.753
 
-Classification report for Losgistic_Regression model: 
+Classification report for Random_Forest model: 
 
               precision    recall  f1-score   support
 
-           0       0.76      0.73      0.75       145
-           1       0.80      0.83      0.81       189
+           0       0.72      0.72      0.72       145
+           1       0.78      0.79      0.79       189
 
-    accuracy                           0.78       334
-   macro avg       0.78      0.78      0.78       334
-weighted avg       0.78      0.78      0.78       334
+    accuracy                           0.76       334
+   macro avg       0.75      0.75      0.75       334
+weighted avg       0.76      0.76      0.76       334
 
 
 The Confusion Matrix: 
 
-[[106  39]
- [ 33 156]]
+[[104  41]
+ [ 40 149]]
 
 ```
 
@@ -225,25 +225,37 @@ The Confusion Matrix:
 
 After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the LassoLars regression is the best model with the smallest value of MSE. Thus, we start with combination of the LassoLars regression and forward variable selection. 
 
+|      |AutoML_FVS_Regression.fit(X_train, y_train, X_test, y_test, model = "LassoLars", n_selected_features = 10)|
+|------|--------------------------- |
+| Parameters | X_train, y_train: input data for training process.   |
+|            | X_test, y_test: input data for testing process       |
+|            | model: name of models with combining with FVS. Please select one of them: LassoLars, KernelRidge, Random_Forest, Stochastic_Gradient_Descent, DecisionTree, ElasticNet, Ridge, Lasso, GaussianProcess     |
+| Returns    | all_infor: rank of performances of ML algorithm for number of features |
+|            | all_model: a model responses a number of features |
+|            | f: all of selected features |
+
 ```
-from FVS_algorithm import AutoML_FVS
-fvs = AutoML_FVS()
-all_info, all_model, f = fvs.LassoLars_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
+fvs = AutoML_FVS_Regression()
+all_info, all_model, f = fvs.fit(X_train, y_train, X_test, y_test, model = "LassoLars", n_selected_features = 10)
+
+~~~~~~~~~~~~~~~~~~ STARTING ALGORITHM ~~~~~~~~~~~~~~~~~~~~~~~~
+
+Forward variable selection combined with the LassoLars algorithm
 
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   38.9s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.4min finished
-The current number of features: 1 - MSE: 0.61
+The current number of features: 1 - MSE: 0.54 - Corr: 0.21
 
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   36.9s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.4min finished
-The current number of features: 2 - MSE: 0.60
+The current number of features: 2 - MSE: 0.54 - Corr: 0.25
 
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:   41.4s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  2.5min finished
-The current number of features: 3 - MSE: 0.59
+The current number of features: 3 - MSE: 0.53 - Corr: 0.26
 
 .....
 
