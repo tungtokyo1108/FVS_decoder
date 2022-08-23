@@ -265,10 +265,18 @@ The current number of features: 3 - MSE: 0.53 - Corr: 0.26
 
 After selecting the best algorithm for analyzing our database, we go to the next step that run forward variable selection to identify a important group of brain regions. For example, in our database, the decision tree classifier is the best model with the highest accuracy. Thus, we start with combination of the decision tree classifier and random forest classifier and forward variable selection. 
 
-#### Random forest classifier
+|      |AutoML_FVS_Classification.fit(X_train, y_train, X_test, y_test, model = "LassoLars", n_selected_features = 10)|
+|------|--------------------------- |
+| Parameters | X_train, y_train: input data for training process.   |
+|            | X_test, y_test: input data for testing process       |
+|            | model: name of models with combining with FVS. Please select one of them: Random_Forest, Stochastic_Gradient_Descent, DecisionTree, Logistic, Naive_Bayes, Gradient_Boosting, Support_Vector_Classify     |
+| Returns    | all_infor: rank of performances of ML algorithm for number of features |
+|            | all_model: a model responses a number of features |
+|            | f: all of selected features |
 
 ```
-all_info, all_model, f = fvs.RandomForest_FVS(X_train, y_train, X_test, y_test, n_selected_features = 200)
+fvs = AutoML_FVS_Classification()
+all_info, all_model, f = fvs.fit(X_train, y_train, X_test, y_test, model = "Logistic", n_selected_features = 100)
 
 [Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.2s
@@ -281,15 +289,6 @@ The current number of features: 1 - Accuracy: 67.11%
 [Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.5s
 [Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:  1.1min finished
 The current number of features: 10 - Accuracy: 70.26%
-
-.....
-
-[Parallel(n_jobs=-1)]: Using backend LokyBackend with 80 concurrent workers.
-[Parallel(n_jobs=-1)]: Done  40 tasks      | elapsed:    0.2s
-[Parallel(n_jobs=-1)]: Done 246 out of 246 | elapsed:   27.2s finished
-The current number of features: 87 - Accuracy: 82.63%
-
-.....
 
 ```
 
@@ -340,12 +339,22 @@ Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html)
 ### 3.2. Classification
 
 #### Random forest classifier
-We evaluate the random forest model with 87 brain regions that seletected by forward variable selection. 
+We evaluate the random forest model with 8 brain regions that seletected by forward variable selection. 
 
 ```
-fvs = AutoML_FVS()
-evaluate_ramdomforest = fvs.evaluate_multiclass(selected_randomforest_model, data_full, data_selected, 
-                            model = 'Random Forest', num_class=2, class_name = class_name))
+subset = f
+subset = subset.drop(columns = "All")
+load_grid_model = all_model
+
+best_model_8 = load_grid_model[8]
+subset = subset.iloc[8].dropna()
+region_subset = bna[subset]
+
+X_train, X_test, y_train, y_test = train_test_split(region_subset, y, test_size=0.3, random_state=42)
+
+best_model_8.fit(X_train, y_train)
+evaluate_logistic = automl.evaluate_multiclass(best_model_8, X_train, y_train, X_test, y_test,
+                            model = "Random_Forest", num_class=2, class_name = class_name)
                                   
 Classification report for Random Forest model: 
 
