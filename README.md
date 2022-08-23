@@ -10,7 +10,7 @@
 
 ### Install step 
 1 - Download and unzip package  
-<img src="Photos/Step_0_1.png" width="50" height="50">
+<img src="Photos/Step_0_1.png" width="200" height="200">
 
 ### 1. Automatic machine learning approaches 
 
