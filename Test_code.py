@@ -105,6 +105,9 @@ all_info, all_model, f = fvs.Lasso_FVS(X_train, y_train, X_test, y_test, n_selec
 all_info, all_model, f = fvs.GaussianProcess_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
 
 
+all_info, all_model, f = fvs.fit(X_train, y_train, X_test, y_test, model = "Ridge", n_selected_features = 10)
+
+
 ### Evaluation 
 
 subset = f
@@ -141,6 +144,8 @@ all_info, all_model, f = fvs.Gradient_Boosting_FVS(X_train, y_train, X_test, y_t
 
 all_info, all_model, f = fvs.Support_Vector_Classify_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
 
+all_info, all_model, f = fvs.fit(X_train, y_train, X_test, y_test, model = "Logistic", n_selected_features = 100)
+
 ### Evaluation 
 
 subset = f
@@ -156,24 +161,6 @@ X_train, X_test, y_train, y_test = train_test_split(region_subset, y, test_size=
 best_model_8.fit(X_train, y_train)
 evaluate_logistic = automl.evaluate_multiclass(best_model_8, X_train, y_train, X_test, y_test,
                             model = "Losgistic_Regression", num_class=2, class_name = class_name)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
