@@ -313,8 +313,19 @@ Outputs of forward variable selection are shown in table
 ### 3.1. Regression 
 
 ```
-fvs = AutoML_FVS()
-evaluate_LassoLars = fvs.evaluate_regression(selected_LassoLars_model, data_full, data_selected, model = 'LassoLars')
+subset = f
+subset = subset.drop(columns = "All")
+load_grid_model = all_model
+
+best_model_6 = load_grid_model[6]
+subset = subset.iloc[6].dropna()
+region_subset = bna[subset]
+
+X_train, X_test, y_train, y_test = train_test_split(region_subset, y, test_size=0.3, random_state=42)
+
+best_model_6.fit(X_train, y_train)
+evaluate_r = automl.evaluate_regression(best_model_6, X_train, y_train, X_test, y_test, model="Ridge regression",
+                                        name_target = "AgeTag", feature_evaluate = True)
 ```
 
 | LassoLar for 246 brain regions | LassoLar for 54 selected brain regions by FVS | 
