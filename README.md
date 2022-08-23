@@ -29,18 +29,22 @@ import seaborn as sns
 from tqdm import tqdm
 import time
 from sklearn.model_selection import train_test_split
-from sklearn.utils import shuffle
-import pickle 
-import os, sys
-from joblib import Parallel, delayed
-import math
-from scipy.stats import spearmanr
+import warnings 
+warnings.simplefilter("ignore")
+```
+
+Our package includes 4 main functions:
+1 - AutoML_classification: includes 11 ML regression algorithms for automatic process 
+2 - AutoML_Regression: includes 9 ML classification algorithms for automatic process 
+3 - AutoML_FVS_Regression: combines forward variable selection (FVS) with 11 ML regression algorithms
+4 - AutoML_FVS_Classification: combines forward variable selection (FVS) with 9 ML classification algorithms
+
+```
 from Auto_ML_Multiclass import AutoML_classification
 from Auto_ML_Regression import AutoML_Regression
 from FVS_Regression import AutoML_FVS_Regression
 from FVS_Classification import AutoML_FVS_Classification
-import warnings 
-warnings.simplefilter("ignore")
+
 ```
 
 ### 1.1 Regression
@@ -48,8 +52,8 @@ warnings.simplefilter("ignore")
 Import data 
 
 ```
-bna = pd.read_csv("ROI_catROI_bna_Vgm.csv", index_col="BNAsubjID")
-meta = pd.read_csv("NEOFFI.csv", index_col="Subject")
+bna = pd.read_csv("ROI_test.csv", index_col="BNAsubjID")
+meta = pd.read_csv("Meta_test.csv", index_col="Subject")
 y = meta["AgeTag"]
 ```
 
