@@ -8,8 +8,9 @@
 
 ## Main commands and options
 
-## Install step 
-1- 
+### Install step 
+1 - Download and unzip package  
+![Swagger Doc Screenshot](Photos/Step_0_1.png)
 
 ### 1. Automatic machine learning approaches 
 
