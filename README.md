@@ -331,7 +331,7 @@ evaluate_r = automl.evaluate_regression(best_model_6, X_train, y_train, X_test, 
 
 | LassoLar for 246 brain regions | LassoLar for 54 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
-| <img src="Photos/LassoLars_onl.jpg" width="500" height="470">|<img src="Photos/LassoLars_FVS.jpg" width="500" height="470">| 
+| <img src="Photos/LassoLars_onl.jpg" width="500" height="490">|<img src="Photos/LassoLars_FVS.jpg" width="500" height="490">| 
 
 
 Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
@@ -377,7 +377,7 @@ weighted avg       0.81      0.80      0.80        76
 
 | Random forest for 246 brain regions | Random forest for 87 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
-| <img src="Photos/RandomForest_onl.jpg" width="500" height="470">|<img src="Photos/RandomForest_FVS.jpg" width="500" height="470">| 
+| <img src="Photos/RandomForest_onl.jpg" width="500" height="490">|<img src="Photos/RandomForest_FVS.jpg" width="500" height="490">| 
 
 Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
 <img src="Photos/RandomForest_brain.png" width="700" height="500">
