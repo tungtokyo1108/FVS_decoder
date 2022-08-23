@@ -97,6 +97,20 @@ Outputs are shown in table
 |  10  |DecisionTree_regression     | 0.611971  | 0.566921 | 0.002910 |
 |  11  |Stochastic_Gradient_Descent | 0.613786  | 0.568636 | -0.00010 |
 
+We run a function to show the performance of ML algorithm.
+|      |AutoML_Regression.(self, best_clf, X_train, y_train, X_test, y_test, model="Random Forest",
+                            name_target = "agetag", feature_evaluate = True, top_features=2):|
+|------|--------------------------- |
+| Parameters | X_train, y_train: input data for training process|
+|            | X_test, y_test: input data for testing process   |
+| Returns    | a table: rank of performances of 11 ML regresion |
+
+```
+kr_best, _, _, _ = automl.KernelRidge_regression(X_train, y_train, X_test, y_test)
+evaluate_r = automl.evaluate_regression(kr_best, X_train, y_train, X_test, y_test, model="Kernal Ridge regression",
+                                        name_target = "AgeTag", feature_evaluate = True)
+```
+
 ### 1.2 Classification
 
 Import data and label groups for classification 
