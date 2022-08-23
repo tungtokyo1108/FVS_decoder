@@ -4,7 +4,7 @@
 
 ## The workflow of the algorithm
 
-<img src="Photos/AutoML_FVS_Algorithm.png" width="1000" height="800">
+<img src="Photos/AutoML_FVS_Algorithm.png" width="1000" height="900">
 
 ## Main commands and options
 
