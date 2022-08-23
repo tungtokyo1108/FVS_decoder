@@ -8,18 +8,34 @@
 
 ## Main commands and options
 
+## Install step 
+1- 
+
 ### 1. Automatic machine learning approaches 
 
 First of all, we import some packages that are necessary to analyze the database 
 
 ```
+import argparse
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
+from tqdm import tqdm
+import time
 from sklearn.model_selection import train_test_split
-from Auto_ML_Regression import AutoML_Regression
+from sklearn.utils import shuffle
+import pickle 
+import os, sys
+from joblib import Parallel, delayed
+import math
+from scipy.stats import spearmanr
 from Auto_ML_Multiclass import AutoML_classification
+from Auto_ML_Regression import AutoML_Regression
+from FVS_Regression import AutoML_FVS_Regression
+from FVS_Classification import AutoML_FVS_Classification
+import warnings 
+warnings.simplefilter("ignore")
 ```
 
 ### 1.1 Regression
