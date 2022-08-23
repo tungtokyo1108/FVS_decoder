@@ -335,7 +335,7 @@ evaluate_r = automl.evaluate_regression(best_model_6, X_train, y_train, X_test, 
 
 
 Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
-<img src="Photos/LassoLars_brain.png" width="500" height="500">
+<img src="Photos/LassoLars_brain.png" width="700" height="500">
 
 
 ### 3.2. Classification
