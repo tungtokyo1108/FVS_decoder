@@ -72,7 +72,7 @@ X_train, X_test, y_train, y_test = train_test_split(bna, y, test_size=0.3, rando
 ```
 
 We run automatic machine learning algorithm for regression
-| AutoML_Regression.fit(X_train, y_train, X_test, y_test)|
+|      |AutoML_Regression.fit(X_train, y_train, X_test, y_test)|
 |------|--------------------------- |
 | Parameters | X_train, y_train: input data for training process|
 | Parameters | X_test, y_test: input data for testing process   |
