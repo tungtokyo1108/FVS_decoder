@@ -354,47 +354,27 @@ class AutoML_FVS_Classification():
                                                  hyperparameter, my_cv=5, n_selected_features = n_selected_features)
         
         return all_info, all_model, f
+    
+    def fit(self, X_train, y_train, X_test, y_test, model = "Random_Forest", n_selected_features = 100):
         
+        print("\n~~~~~~~~~~~~~~~~~~ STARTING ALGORITHM ~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("\nForward variable selection combined with the {} algorithm".format(model))
+        print("\n")
         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        if model == "Logistic":
+            all_info, all_model, f = self.Logistic_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Random_Forest":
+            all_info, all_model, f = self.Random_Forest_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Stochastic_Gradient_Descent":
+            all_info, all_model, f = self.Stochastic_Gradient_Descent_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "DecisionTree":
+            all_info, all_model, f = self.Decision_Tree_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Naive_Bayes":
+            all_info, all_model, f = self.Naive_Bayes_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Gradient_Boosting":
+            all_info, all_model, f = self.Gradient_Boosting_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Support_Vector_Classify":
+            all_info, all_model, f = self.Support_Vector_Classify_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+            
+        return all_info, all_model, f
         
