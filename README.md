@@ -34,9 +34,13 @@ warnings.simplefilter("ignore")
 ```
 
 Our package includes 4 main functions:
+
 1 - AutoML_classification: includes 11 ML regression algorithms for automatic process 
+
 2 - AutoML_Regression: includes 9 ML classification algorithms for automatic process 
+
 3 - AutoML_FVS_Regression: combines forward variable selection (FVS) with 11 ML regression algorithms
+
 4 - AutoML_FVS_Classification: combines forward variable selection (FVS) with 9 ML classification algorithms
 
 ```
