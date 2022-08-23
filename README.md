@@ -10,7 +10,7 @@
 
 ### Install step 
 1 - Download and unzip package  
-![Swagger Doc Screenshot](Photos/Step_0_1.png)
+<img src="Photos/Step_0_1.png" width="50" height="50">
 
 ### 1. Automatic machine learning approaches 
 
