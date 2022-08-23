@@ -331,11 +331,11 @@ evaluate_r = automl.evaluate_regression(best_model_6, X_train, y_train, X_test, 
 
 | LassoLar for 246 brain regions | LassoLar for 54 selected brain regions by FVS | 
 | ----------------------------------- |:---------------------------------------------:|
-| <img src="Photos/LassoLars_onl.jpg" width="500" height="500">|<img src="Photos/LassoLars_FVS.jpg.jpg" width="500" height="500">| 
+| <img src="Photos/LassoLars_onl.jpg" width="500" height="500">|<img src="Photos/LassoLars_FVS.jpg" width="500" height="500">| 
 
 
 Mapped selected region on brain (http://atlas.brainnetome.org/bnatlas.html) 
-<img src="Photos/LassoLars_brain.png.jpg" width="500" height="500">
+<img src="Photos/LassoLars_brain.png" width="500" height="500">
 
 
 ### 3.2. Classification
