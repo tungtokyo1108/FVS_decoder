@@ -75,7 +75,7 @@ We run automatic machine learning algorithm for regression
 |      |AutoML_Regression.fit(X_train, y_train, X_test, y_test)|
 |------|--------------------------- |
 | Parameters | X_train, y_train: input data for training process|
-| Parameters | X_test, y_test: input data for testing process   |
+|            | X_test, y_test: input data for testing process   |
 ```
 automl = AutoML_Regression()
 result = automl.fit(X_train, y_train, X_test, y_test)
