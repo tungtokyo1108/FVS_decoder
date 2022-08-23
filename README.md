@@ -76,6 +76,7 @@ We run automatic machine learning algorithm for regression
 |------|--------------------------- |
 | Parameters | X_train, y_train: input data for training process|
 |            | X_test, y_test: input data for testing process   |
+| Returns    | a table: rank of performances of 11 ML regresion |
 ```
 automl = AutoML_Regression()
 result = automl.fit(X_train, y_train, X_test, y_test)
