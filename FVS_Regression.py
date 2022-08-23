@@ -399,4 +399,29 @@ class AutoML_FVS_Regression():
                                           my_cv=5, n_selected_features = n_selected_features)
         return all_info, all_model, f
     
-
+    def fit(self, X_train, y_train, X_test, y_test, model = "Random_Forest", n_selected_features = 100):
+        
+        print("~~~~~~~~~~~~~~~~~~ STARTING ALGORITHM ~~~~~~~~~~~~~~~~~~~~~~~~")
+        print("\nForward variable selection combined with the {} algorithm".format(model))
+        print("\n")
+        
+        if model == "KernelRidge":
+            all_info, all_model, f = self.KernelRidge_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Random_Forest":
+            all_info, all_model, f = self.RF_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Stochastic_Gradient_Descent":
+            all_info, all_model, f = self.Stochastic_Gradient_Descent_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "DecisionTree":
+            all_info, all_model, f = self.DecisionTree_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "ElasticNet":
+            all_info, all_model, f = self.ElasticNet_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "LassoLars":
+            all_info, all_model, f = self.LassoLars_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Ridge":
+            all_info, all_model, f = self.Ridge_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "Lasso":
+            all_info, all_model, f = self.Lasso_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+        elif model == "GaussianProcess":
+            all_info, all_model, f = self.GaussianProcess_FVS(X_train, y_train, X_test, y_test, n_selected_features = n_selected_features)
+            
+        return all_info, all_model, f
