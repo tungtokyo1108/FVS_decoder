@@ -1,6 +1,6 @@
 <img src="Logo.png" width="400">
 
-# AutoML_FVS: A new approach to identify a important group of brain region from fMRI databases 
+# FVS_decoder: A new approach to identify a important group of brain region from fMRI databases 
 
 ## The workflow of the algorithm
 
