@@ -1,6 +1,6 @@
 <img src="Logo.png" width="400">
 
-# FVS_decoder: A new approach to identify a important group of brain region from fMRI databases 
+# FVSdecoder: A new approach to identify a important group of brain region from fMRI databases 
 
 ## Publication
 Dang, T., Fermin, A. S., & Machizawa, M. G. (2022). The forward variable selection based optimized decoding toolbox for neuroimaging data. bioRxiv. https://doi.org/10.1101/2022.12.25.521906
