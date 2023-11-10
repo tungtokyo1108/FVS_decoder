@@ -3,7 +3,8 @@
 # FVSdecoder: A new approach to identify a important group of brain region from fMRI databases 
 
 ## Publication
-Dang, T., Fermin, A. S., & Machizawa, M. G. (2022). oFVSD: A Python package of optimized forward variable selection decoder for high-dimensional neuroimaging data. bioRxiv. https://doi.org/10.1101/2022.12.25.521906
+Dang, T., Fermin, A. S., & Machizawa, M. G. (2022). oFVSD: a Python package of optimized forward variable selection decoder for high-dimensional neuroimaging data. Front. Neuroinform., 26 September 2023
+Volume 17 - 2023 | https://doi.org/10.3389/fninf.2023.1266713
 
 
 ## The workflow of the algorithm
