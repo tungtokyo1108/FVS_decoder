@@ -105,7 +105,9 @@ all_info, all_model, f = fvs.Lasso_FVS(X_train, y_train, X_test, y_test, n_selec
 all_info, all_model, f = fvs.GaussianProcess_FVS(X_train, y_train, X_test, y_test, n_selected_features = 10)
 
 
-all_info, all_model, f = fvs.fit(X_train, y_train, X_test, y_test, model = "Ridge", n_selected_features = 10)
+all_info, all_model, f = fvs.fit(X_train, y_train, X_test, y_test, model = "DecisionTree", n_selected_features = 10)
+
+all_info, all_model, f = fvs.fit(X_train, y_train, X_test, y_test, model = "Random_Forest", n_selected_features = 10)
 
 
 ### Evaluation 
