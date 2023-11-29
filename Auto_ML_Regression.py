@@ -278,8 +278,8 @@ class AutoML_Regression():
         max_depth = [5, 10, 25, 50, 75, 100]
         min_samples_leaf = [1, 2, 4, 8, 10]
         min_samples_split = [2, 4, 6, 8, 10]
-        max_features = ["auto", "sqrt", "log2", None]
-        criterion = ["mse"]
+        max_features = ["sqrt", "log2", None]
+        criterion = ["squared_error", "friedman_mse"]
         splitter = ["best", "random"]
         
         hyperparameter = {"max_depth": max_depth,
@@ -308,8 +308,8 @@ class AutoML_Regression():
         max_depth = [5, 10, 25, 50, 75, 100]
         min_samples_leaf = [1, 2, 4, 8, 10]
         min_samples_split = [2, 4, 6, 8, 10]
-        max_features = ["auto", "sqrt", "log2", None]
-        criterion = ["mse"]
+        max_features = ["sqrt", "log2", None]
+        criterion = ["squared_error", "friedman_mse"]
     
         hyperparameter = {'n_estimators': n_estimators,
                       'max_depth': max_depth,
