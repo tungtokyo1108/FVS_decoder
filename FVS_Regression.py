@@ -215,17 +215,19 @@ class AutoML_FVS_Regression():
         min_samples_leaf = [1, 2, 4, 8, 10]
         min_samples_split = [2, 4, 6, 8, 10]
         max_features = ["auto", "sqrt", "log2", None]
+        criterion = ["squared_error", "friedman_mse"]
 
         hyperparameter = {'n_estimators': n_estimators,
                   'max_depth': max_depth,
                   'min_samples_leaf': min_samples_leaf,
                   'min_samples_split': min_samples_split,
                   'max_features': max_features,
+                  "criterion": criterion
                   }
 
 
         my_cv = RepeatedKFold(n_splits=10, n_repeats=10, random_state=42)
-        base_model_rf = RandomForestRegressor(criterion="mse", random_state=42)
+        base_model_rf = RandomForestRegressor(random_state=42)
         n_iter_search = 30
 
         scoring = "neg_mean_squared_error"
@@ -285,7 +287,7 @@ class AutoML_FVS_Regression():
         min_samples_leaf = [1, 2, 4, 8, 10]
         min_samples_split = [2, 4, 6, 8, 10]
         max_features = ["auto", "sqrt", "log2", None]
-        criterion = ["mse"]
+        criterion = ["squared_error", "friedman_mse"]
         splitter = ["best", "random"]
         
         hyperparameter = {"max_depth": max_depth,
